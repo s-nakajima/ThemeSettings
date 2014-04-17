@@ -51,14 +51,14 @@
 				<?php echo __("テーマを設定しますか？"); ?>
 				<p class="text-center">
 					<a href="/theme/theme/" class="btn btn-default" role="button"><?php echo __('キャンセル')?></a>
-					<a href="/theme/theme/update/<?php echo h($key); ?>" class="btn btn-primary" role="button"><?php echo __('設定する')?></a>
+					<a href="/theme/theme/update/<?php echo h($targetTheme); ?>" class="btn btn-primary" role="button"><?php echo __('設定する')?></a>
 				</p>
 			</div>
 			<div class="modal-header">
 				<h4 class="modal-title" id="myModalLabel">テーマの詳細情報</h4>
 			</div>
 			<div class="modal-body">
-				<?php echo $this->Html->image('/theme/'. h($key).'/snapshot.png' , array('class'=>"img-thumbnail")); ?>
+				<?php echo $this->Html->image('/theme/'. h($targetTheme).'/snapshot.png' , array('class'=>"img-thumbnail")); ?>
 				<h2><?php echo h($themeInfo["name"]); ?></h2>
 				<div>
 					<h4><?php echo __("テーマの説明"); ?></h4>
