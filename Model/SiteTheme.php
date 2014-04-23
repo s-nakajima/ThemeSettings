@@ -13,12 +13,17 @@ class SiteTheme extends AppModel {
 	public $name = "SiteTheme";
 
 	public $hasOne = array(
-		'SiteSettingValue' => array(
-			'ClassName' => 'SiteSettingValue',
-			'confitions' => array("SiteSettingValue.id" => "SiteTheme.id"),
+		'SiteThemeValue' => array(
+			'ClassName' => 'SiteThemeValue',
+			'confitions' => array("SiteThemeValue.id" => "SiteTheme.id"),
 			'dependent' => true
 		)
 	);
+
+/**
+ * updateThemeのためのバリデーションルール
+ * @var array
+ */
 
 /**
  * __construct
@@ -36,23 +41,30 @@ class SiteTheme extends AppModel {
  * @param array $theme
  */
 	public function updateTheme($theme) {
-
-		$updateData['SiteSettingValue']['value'] = $theme;
-		$updateData['SiteTheme']['name'] = 'Theme';
+		$updateData = array();
+		if (is_array($theme)) {
+			$updateData = $theme;
+		} elseif (is_string($theme)) {
+			$updateData['SiteThemeValue']['value'] = $theme;
+		}
+		//旧データの存在を確認
 		$ck = $this->find('first', array(
 			'conditions' => array('name' => "Theme")
 		));
+
 		if ($ck
 			&& isset($ck['SiteTheme'])
 			&& isset($ck['SiteTheme']['id'])
 		) {
+			//データの更新
+			$updateData['SiteTheme']['name'] = 'Theme';
 			$updateData['SiteTheme']['id'] = $ck['SiteTheme']['id'];
-			$updateData['SiteSettingValue']['id'] = $ck['SiteSettingValue']['id'];
-			 return $this->saveAll($updateData);
-		}
-		else
-		{
-			return $this->saveAll($updateData);
+			$updateData['SiteThemeValue']['id'] = $ck['SiteThemeValue']['id'];
+			return $this->saveAssociated($updateData);
+		} else {
+			//データの保存 insert
+			$updateData['SiteTheme']['name'] = 'Theme';
+			return $this->saveAssociated($updateData);
 		}
 	}
 
@@ -62,11 +74,11 @@ class SiteTheme extends AppModel {
  */
 	public function getThemeName() {
 		$theme = $this->getTheme();
-		if ($theme && isset($theme["SiteSettingValue"])
-			&& isset($theme["SiteSettingValue"]["value"])
-			&& $theme["SiteSettingValue"]["value"]
+		if ($theme && isset($theme["SiteThemeValue"])
+			&& isset($theme["SiteThemeValue"]["value"])
+			&& $theme["SiteThemeValue"]["value"]
 		) {
-			return $theme["SiteSettingValue"]["value"];
+			return $theme["SiteThemeValue"]["value"];
 		}
 		return null;
 	}
