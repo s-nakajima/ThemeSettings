@@ -8,7 +8,7 @@ App::uses('AppController', 'Controller');
  * @link     http://www.netcommons.org NetCommons Project
  * @license  http://www.netcommons.org/license.txt NetCommons License
  */
-class SiteController extends AppController {
+class ThemeSiteController extends AppController {
 
 /**
  * helper
@@ -23,10 +23,10 @@ class SiteController extends AppController {
 	public $SiteTheme = null;
 
 /**
- * SiteThemeValue model class格納用
+ * ThemeSiteValue model class格納用
  * @var null
  */
-	public $SiteThemeValue = null;
+	public $ThemeSiteValue = null;
 
 /**
  * beforeFilter
@@ -37,9 +37,9 @@ class SiteController extends AppController {
 	public function beforeFilter() {
 		parent::beforeFilter();
 		$this->Auth->allow();
-		$this->set("classUrl", "site");
-		$this->SiteTheme = Classregistry::init("Theme.SiteTheme");
-		$this->SiteThemeValue = Classregistry::init("Theme.SiteThemeValue");
+		$this->set("classUrl", "theme_site");
+		$this->ThemeSite = Classregistry::init("Theme.ThemeSite");
+		$this->ThemeSiteValue = Classregistry::init("Theme.ThemeSiteValue");
 	}
 
 /**
@@ -73,19 +73,19 @@ class SiteController extends AppController {
 		}
 		//Postのとき
 		if ($this->request->isPost()) {
-			$ck = $this->SiteTheme->updateTheme($this->request->data);
+			$ck = $this->ThemeSite->updateTheme($this->request->data);
 			if ($ck) {
 				//完了画面表示 //成功した場合
-				$this->theme = $this->SiteTheme->getThemeName();
+				$this->theme = $this->ThemeSite->getThemeName();
 				$this->set('themeList', $this->getThemeList()); //テーマ一覧を取得する
 				$this->set("confirm", false); //確認モーダル表示 ON
 				$this->view = "update_end"; //完了画面表示
 				return $this->render();
 			} else {
 				//バリデーションエラー
-				if (isset($this->SiteTheme->validationErrors) && $this->SiteTheme->validationErrors) {
-					$errors = $this->SiteTheme->validationErrors;
-					$this->set("errors", $errors["SiteThemeValue"]["value"]);
+				if (isset($this->ThemeSite->validationErrors) && $this->ThemeSite->validationErrors) {
+					$errors = $this->ThemeSite->validationErrors;
+					$this->set("errors", $errors["ThemeSiteValue"]["value"]);
 					$this->view = "index";
 					return $this->index();
 				} else {
@@ -98,7 +98,7 @@ class SiteController extends AppController {
 				$this->view = "index";
 				$this->theme = $theme;
 				$themeList = $this->getThemeList();
-				$oldTheme = $this->SiteTheme->getTheme();
+				$oldTheme = $this->ThemeSite->getTheme();
 				$this->set("oldTheme", $oldTheme);
 				$this->set('themeList', $themeList); //テーマ一覧を取得する
 				$this->set("themeInfo", $themeList[$theme]);
@@ -118,7 +118,7 @@ class SiteController extends AppController {
 		$this->view = "index";
 		$this->theme = $theme;
 		$themeList = $this->getThemeList();
-		$oldTheme = $this->SiteTheme->getTheme();
+		$oldTheme = $this->ThemeSite->getTheme();
 		$this->set("confirm", true); //モーダル表示ON
 		$this->set("oldTheme", $oldTheme);
 		$this->set('themeList', $themeList); //テーマ一覧を取得する
@@ -164,9 +164,9 @@ class SiteController extends AppController {
  * @author Takako Miyagawa <nekoget@gmail.com>
  */
 	public function setting($theme = "Defalut") {
-		$siteTheme = Classregistry::init("Theme.SiteTheme");
-		$siteTheme->updateTheme($theme);//更新
-		$this->theme = $siteTheme->getThemeName();
+		$ThemeSite = Classregistry::init("Theme.ThemeSite");
+		$ThemeSite->updateTheme($theme);//更新
+		$this->theme = $ThemeSite->getThemeName();
 		$this->set('themeList', $this->getThemeList()); //テーマ一覧を取得する
 		$this->set("confirm", false); //確認モーダル表示 ON
 	}

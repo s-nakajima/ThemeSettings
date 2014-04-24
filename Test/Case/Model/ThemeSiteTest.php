@@ -36,8 +36,8 @@ class SiteThemeTest extends CakeTestCase {
  */
 	public function setUp() {
 		parent::setUp();
-		$this->SiteTheme = ClassRegistry::init('Theme.SiteTheme');
-		$this->SiteThemeValue = ClassRegistry::init('Theme.SiteThemeValue');
+		$this->ThemeSite = ClassRegistry::init('Theme.ThemeSite');
+		$this->ThemeSiteValue = ClassRegistry::init('Theme.ThemeSiteValue');
 	}
 
 /**
@@ -46,23 +46,23 @@ class SiteThemeTest extends CakeTestCase {
  * @return void
  */
 	public function tearDown() {
-		unset($this->SiteTheme);
-		unset($this->SiteThemeValue);
+		unset($this->ThemeSite);
+		unset($this->ThemeSiteValue);
 		parent::tearDown();
 	}
 /**
- * getSiteTheme サイト用テーマ名の取得
+ * getThemeSite サイト用テーマ名の取得
  * @return void
  */
 	public function testGetThemeName() {
 		//データがある場合
-		$ck = $this->SiteTheme->getThemeName();
+		$ck = $this->ThemeSite->getThemeName();
 		$this->assertTextEquals("UnitTestTheme", $ck);
 		//データが無い場合を作る
-		$ck = $this->SiteTheme->delete(2);
+		$ck = $this->ThemeSite->delete(2);
 		$this->assertTrue($ck);
 		//問い合わせた結果データは無いのでnullが戻る
-		$ck = $this->SiteTheme->getThemeName();
+		$ck = $this->ThemeSite->getThemeName();
 		$this->assertEquals(null, $ck);
 	}
 
@@ -72,51 +72,51 @@ class SiteThemeTest extends CakeTestCase {
  */
 	public function testGetTheme() {
 		//データがある場合
-		$ck = $this->SiteTheme->getTheme();
+		$ck = $this->ThemeSite->getTheme();
 		//var_dump($ck);
-		$this->assertTextEquals("UnitTestTheme", $ck['SiteThemeValue']['value']);
+		$this->assertTextEquals("UnitTestTheme", $ck['ThemeSiteValue']['value']);
 		//データを削除
-		$ck = $this->SiteTheme->delete(2);
+		$ck = $this->ThemeSite->delete(2);
 		$this->assertTrue($ck);
 		//データが無い状態
-		$ck = $this->SiteTheme->getTheme();
+		$ck = $this->ThemeSite->getTheme();
 		$this->assertNull($ck);
 	}
 
 	public function testUpdateTheme() {
 		$theme = 'Default';
-		$ck = $this->SiteTheme->updateTheme($theme);
+		$ck = $this->ThemeSite->updateTheme($theme);
 		$this->assertTrue($ck);
 		//名前を確認する
-		$ck = $this->SiteTheme->getThemeName();
+		$ck = $this->ThemeSite->getThemeName();
 		$this->assertTextEquals($theme, $ck);
 		//配列の場合
-		$theme2['SiteThemeValue']['value'] = "test2";
-		$ck = $this->SiteTheme->updateTheme($theme2);
+		$theme2['ThemeSiteValue']['value'] = "test2";
+		$ck = $this->ThemeSite->updateTheme($theme2);
 		$this->assertTrue($ck);
 		//名前を確認する
-		$ck = $this->SiteTheme->getThemeName();
+		$ck = $this->ThemeSite->getThemeName();
 		$this->assertTextEquals("test2", $ck);
 		//valueがブランク
-		$theme2['SiteThemeValue']['value'] = "";
-		$ck = $this->SiteTheme->updateTheme($theme2);
+		$theme2['ThemeSiteValue']['value'] = "";
+		$ck = $this->ThemeSite->updateTheme($theme2);
 		//$this->assertTrue(!$ck);
 	}
 
 	public function testCreateTheme() {
 		//データが無い場合を作る
-		$ck = $this->SiteTheme->delete(2);
+		$ck = $this->ThemeSite->delete(2);
 		$this->assertTrue($ck);
 		//問い合わせた結果データは無いのでnullが戻る
-		$ck = $this->SiteTheme->getThemeName();
+		$ck = $this->ThemeSite->getThemeName();
 		$this->assertEquals(null, $ck);
 		//テーマを設定する
 		$theme = 'Default';
-		$ck = $this->SiteTheme->updateTheme($theme);
+		$ck = $this->ThemeSite->updateTheme($theme);
 		$this->assertTrue($ck);
 		//名前を確認する
-		$ck = $this->SiteTheme->getThemeName();
+		$ck = $this->ThemeSite->getThemeName();
 		$this->assertTextEquals($theme, $ck);
-		//var_dump($this->SiteTheme->find('all'));
+		//var_dump($this->ThemeSite->find('all'));
 	}
 }
