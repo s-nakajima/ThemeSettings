@@ -2,7 +2,7 @@
 
 App::uses('AppModel', 'Model');
 
-class ThemeAppModel extends AppModel {
+class ThemeSettingsAppModel extends AppModel {
 
 /**
  * @var bool

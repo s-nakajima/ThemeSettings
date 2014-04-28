@@ -15,20 +15,29 @@
 		}
 		?>
 
+		<ul class="nav nav-tabs">
+			<li  class="active"><a href="/theme_settings/<?php echo $classUrl; ?>/index/">
+					<?php echo __("画像大"); ?></a></li>
+			<li><a href="/theme_settings/<?php echo $classUrl; ?>/index/small"><?php echo __("小"); ?></a></li>
+		</ul>
+		<br>
 		<div class="row">
 			<?php foreach ($themeList as $key=>$i) {
 				if( ! isset($i["snapshot"]) || ! $i["snapshot"]) {
 					$i["snapshot"] = ''; //noimage
 				}
 				?>
-				<div class="col-sm-6 col-md-4">
+				<div class="col-sm-4 col-md-4">
 					<div class="thumbnail">
-						<?php echo $this->Html->image('/theme/'. h($key).'/snapshot.png' , array('class'=>"img-thumbnail")); ?>
+						<?php echo $this->Html->image(
+							h($i["snapshot"]) ,
+							array('class'=>"img-thumbnail")
+						); ?>
 						<div class="caption">
 							<h3 class="text-center"><?php echo h($i['name']); ?></h3>
-							<p><?php echo nl2br(h($i['description'])); ?></p>
+							<p><?php echo mb_strimwidth(h($i['description']), 0, 100 , '...'); ?></p>
 							<p class="text-center">
-								<a href="/theme/<?php echo h($classUrl); ?>/confirm/<?php echo h($key); ?>" class="btn btn-primary" role="button"><?php echo __('設定確認/詳細を見る')?></a>
+								<a href="/theme_settings/<?php echo h($classUrl); ?>/confirm/<?php echo h($key); ?>" class="btn btn-primary" role="button"><?php echo __('設定確認/詳細を見る')?></a>
 							</p>
 						</div>
 					</div>
@@ -57,7 +66,7 @@
 			<div class="modal-body">
 				<?php echo __("テーマを設定しますか？"); ?>
 				<p class="text-center">
-					<a href="/theme/<?php echo h($classUrl); ?>/" class="btn btn-default" role="button"><?php echo __('キャンセル')?></a>
+					<a href="/theme_settings/<?php echo h($classUrl); ?>/" class="btn btn-default" role="button"><?php echo __('キャンセル')?></a>
 					<?php //TODO:POST ?>
 					<a href="javascript:void(0)" id="btnSiteThemePost"  class="btn btn-primary" role="button"><?php echo __('設定する')?></a>
 					<?php echo $this->Form->create(null, array("id"=>"SiteThemePost")); ?>
@@ -75,7 +84,7 @@
 				<h4 class="modal-title" id="myModalLabel">テーマの詳細情報</h4>
 			</div>
 			<div class="modal-body">
-				<?php echo $this->Html->image('/theme/'. h($targetTheme).'/snapshot.png' , array('class'=>"img-thumbnail")); ?>
+				<?php echo $this->Html->image('/theme_settings/'. h($targetTheme).'/snapshot.png' , array('class'=>"img-thumbnail")); ?>
 				<h2><?php echo h($themeInfo["name"]); ?></h2>
 				<div>
 					<h4><?php echo __("テーマの説明"); ?></h4>

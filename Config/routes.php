@@ -1,5 +1,6 @@
 <?php
 
-Router::connect('/auth/:action', array(
-	'plugin' => 'auth', 'controller' => 'auth'
+Router::connect('/theme_settings/site/:action', array(
+	'plugin' => 'ThemeSettings',
+	'controller' => 'ThemeSettingsSite'
 ));

@@ -1,5 +1,5 @@
 {
-    "name":        "netcommons/theme",
+    "name":        "netcommons/theme_settings",
     "description": "Sandbox Plugin for CakePHP",
     "type":        "cakephp-plugin",
     "keywords":    ["cakephp", "theme"],
@@ -8,7 +8,7 @@
     "authors": [
         {
             "name":     "NetCommons Community",
-            "homepage": "https://github.com/NetCommons3/theme/graphs/contributors"
+            "homepage": "https://github.com/NetCommons3/THemeSettings/graphs/contributors"
         }
     ],
     "require": {

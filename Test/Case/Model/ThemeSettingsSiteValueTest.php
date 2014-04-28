@@ -7,13 +7,13 @@
  * @license  http://www.netcommons.org/license.txt NetCommons License
  */
 
-App::uses('SiteThemeValue', 'Theme.Model');
-App::uses('SiteTheme', 'Theme.Model');
+App::uses('ThemeSettingsSiteValue', 'ThemeSettings.Model');
+App::uses('ThemeSettingsSite', 'ThemeSettings.Model');
 
 /**
  * Summary for SiteSetting Test Case
  */
-class SiteThemeValueTest extends CakeTestCase {
+class ThemeSettingsSiteValueTest extends CakeTestCase {
 
 /**
  * Fixtures
@@ -27,7 +27,9 @@ class SiteThemeValueTest extends CakeTestCase {
 		'site_setting_value'
 	);
 
-	public $ThemeSite;
+	public $ThemeSettingsSite;
+
+	public $ThemeSettingsSiteValue;
 
 /**
  * setUp method
@@ -36,8 +38,8 @@ class SiteThemeValueTest extends CakeTestCase {
  */
 	public function setUp() {
 		parent::setUp();
-		$this->ThemeSite = ClassRegistry::init('Theme.ThemeSite');
-		$this->ThemeSiteValue = ClassRegistry::init('Theme.ThemeSiteValue');
+		$this->ThemeSettingsSite = ClassRegistry::init('ThemeSettings.ThemeSettingsSite');
+		$this->ThemeSettingsSiteValue = ClassRegistry::init('ThemeSettings.ThemeSettingsSiteValue');
 	}
 
 /**
@@ -46,12 +48,12 @@ class SiteThemeValueTest extends CakeTestCase {
  * @return void
  */
 	public function tearDown() {
-		unset($this->ThemeSite);
-		unset($this->ThemeSiteValue);
+		unset($this->ThemeSettingsSite);
+		unset($this->ThemeSettingsSiteValue);
 		parent::tearDown();
 	}
 
 	public function testSave() {
-		$this->assertFalse($this->ThemeSiteValue->save(array()));
+		$this->assertFalse($this->ThemeSettingsSiteValue->save(array()));
 	}
 }

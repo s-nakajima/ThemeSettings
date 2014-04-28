@@ -7,7 +7,8 @@ App::uses('AppController', 'Controller');
  * @link     http://www.netcommons.org NetCommons Project
  * @license  http://www.netcommons.org/license.txt NetCommons License
  */
-class ThemeController extends AppController {
+class ThemeSettingsController extends AppController {
+
 /**
  * beforeFilter
  *

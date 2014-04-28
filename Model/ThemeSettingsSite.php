@@ -2,7 +2,7 @@
 
 App::uses('AppModel', 'Model');
 
-class ThemeSite extends AppModel {
+class ThemeSettingsSite extends AppModel {
 
 /**
  * テーブルの指定
@@ -10,20 +10,15 @@ class ThemeSite extends AppModel {
  */
 	public $useTable = 'site_settings';
 
-	public $name = "ThemeSite";
+	public $name = "ThemeSettingsSite";
 
 	public $hasOne = array(
-		'ThemeSiteValue' => array(
-			'ClassName' => 'ThemeSiteValue',
-			'confitions' => array("ThemeSiteValue.id" => "ThemeSite.id"),
+		'ThemeSettingsSiteValue' => array(
+			'ClassName' => 'ThemeSettingsSiteValue',
+			'confitions' => array("ThemeSettingsSiteValue.id" => "ThemeSettingsSite.id"),
 			'dependent' => true
 		)
 	);
-
-/**
- * updateThemeのためのバリデーションルール
- * @var array
- */
 
 /**
  * __construct
@@ -45,24 +40,24 @@ class ThemeSite extends AppModel {
 		if (is_array($theme)) {
 			$updateData = $theme;
 		} elseif (is_string($theme)) {
-			$updateData["ThemeSiteValue"]["value"] = $theme;
+			$updateData["ThemeSettingsSiteValue"]["value"] = $theme;
 		}
 		//旧データの存在を確認
 		$ck = $this->find('first', array(
 			'conditions' => array('name' => "Theme")
 		));
 		if ($ck
-			&& isset($ck['ThemeSite'])
-			&& isset($ck['ThemeSite']['id'])
+			&& isset($ck['ThemeSettingsSite'])
+			&& isset($ck['ThemeSettingsSite']['id'])
 		) {
 			//データの更新
-			$updateData['ThemeSite']['name'] = 'Theme';
-			$updateData['ThemeSite']['id'] = $ck['ThemeSite']['id'];
-			$updateData['ThemeSiteValue']['id'] = $ck['ThemeSiteValue']['id'];
+			$updateData['ThemeSettingsSite']['name'] = 'Theme';
+			$updateData['ThemeSettingsSite']['id'] = $ck['ThemeSettingsSite']['id'];
+			$updateData['ThemeSettingsSiteValue']['id'] = $ck['ThemeSettingsSiteValue']['id'];
 			return $this->saveAssociated($updateData);
 		} else {
 			//データの保存 insert
-			$updateData['ThemeSite']['name'] = 'Theme';
+			$updateData['ThemeSettingsSite']['name'] = 'Theme';
 			return $this->saveAssociated($updateData);
 		}
 	}
@@ -73,11 +68,11 @@ class ThemeSite extends AppModel {
  */
 	public function getThemeName() {
 		$theme = $this->getTheme();
-		if ($theme && isset($theme["ThemeSiteValue"])
-			&& isset($theme["ThemeSiteValue"]["value"])
-			&& $theme["ThemeSiteValue"]["value"]
+		if ($theme && isset($theme["ThemeSettingsSiteValue"])
+			&& isset($theme["ThemeSettingsSiteValue"]["value"])
+			&& $theme["ThemeSettingsSiteValue"]["value"]
 		) {
-			return $theme["ThemeSiteValue"]["value"];
+			return $theme["ThemeSettingsSiteValue"]["value"];
 		}
 		return null;
 	}
@@ -88,9 +83,9 @@ class ThemeSite extends AppModel {
  */
 	public function getTheme() {
 		$theme = $this->find('first', array(
-			'conditions' => array('ThemeSite.name' => "Theme")
+			'conditions' => array('ThemeSettingsSite.name' => "Theme")
 		));
-		if ($theme) {
+		if($theme) {
 			return $theme;
 		}
 		return null;

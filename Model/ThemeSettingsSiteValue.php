@@ -17,7 +17,7 @@ App::uses('AppModel', 'Model');
 /**
  * Summary for SiteSettingValue Model
  */
-class ThemeSiteValue extends AppModel {
+class ThemeSettingsSiteValue extends AppModel {
 
 /**
  * テーブルの指定
@@ -25,7 +25,7 @@ class ThemeSiteValue extends AppModel {
  */
 	public $useTable = 'site_setting_values';
 
-	public $name = "ThemeSiteValue";
+	public $name = "ThemeSettingsSiteValue";
 
 /**
  * __construct
