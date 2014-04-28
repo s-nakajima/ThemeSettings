@@ -1,6 +1,6 @@
 {
     "name":        "netcommons/theme_settings",
-    "description": "Sandbox Plugin for CakePHP",
+    "description": "ThemeSettings Plugin for CakePHP",
     "type":        "cakephp-plugin",
     "keywords":    ["cakephp", "theme"],
     "homepage":    "http://www.netcommons.org/",
