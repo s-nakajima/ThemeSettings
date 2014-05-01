@@ -1,12 +1,15 @@
 <?php
-$this->Html->script("/net_commons/angular/angular.js", false , array('inline'=>false));
-
 //js呼び出し
-$this->Html->script("ThemeSettings.theme_site.js", false , array('inline'=>false));
-
+$this->Html->script("/net_commons/angular/angular.js", false , array('inline'=>false));
+$this->Html->script("ThemeSettings.theme_setting_site.js", false , array('inline'=>false));
 ?>
+<script>
+	//テーマ関連情報
+	ThemeSettingThemeList = <?php echo $themeListJson; ?>;
+	SnapshotNoImage = '/theme_setting/img/snapshot_noimage.png';
+</script>
 
-<div  class="container">
+
 	<!-- container-main -->
 	<div id="container-main" role="main">
 		<?php
@@ -25,71 +28,52 @@ $this->Html->script("ThemeSettings.theme_site.js", false , array('inline'=>false
 
 		<ul class="nav nav-tabs">
 			<li><a href="/theme_settings/<?php echo $classUrl; ?>/index/">
-				<?php echo __("画像大"); ?></a></li>
-			<li class="active"><a href="/theme_settings/<?php echo $classUrl; ?>/index/small"><?php echo __("小"); ?></a></li>
+				<?php echo __("画像"); ?></a></li>
+			<li class="active"><a href="/theme_settings/<?php echo $classUrl; ?>/index/small"><?php echo __("一覧"); ?></a></li>
 		</ul>
 
 		<div class="row">
-		<div ng-controller="ThemeSettingsthemeCtrl">
-		<script>
-			themeList = <?php echo json_encode($themeList);?>;
-		</script>
-		<table class="table">
-			<tr ng-repeat="themeList  in theme">
-			  <td>{{theme.name}}</td>
-			</tr>
 
-		</table>
-		{{themeList|json}}
-		</div>
-			<table class="table">
-			<?php foreach ($themeList as $key=>$i) {
-				if( ! isset($i["snapshot"]) || ! $i["snapshot"]) {
-					$i["snapshot"] = ''; //noimage
-				}
-				?>
-
+			<div ng-app class="ng-app" style="display: none;">
+				<div ng-controller="ThemeSettingsSiteIndexCtrl">
+					<div class="container">
+						<form>
+						<input type="text" class="" ng-model="query" value="">
+						<button ng-click="setQuery()" class="btn btn-primary"><?php echo __("検索"); ?></button>
+						</form>
+					</div>
+					<table class="table table-striped" ng-onload="{{setJson()}}">
 					<tr>
+						<th>設定確認</th>
+						<th>テーマ</th>
+						<th>説明</th>
+					</tr>
+					<tr ng-repeat="theme in ThemeList | filter:getQuery()">
 						<td>
-							<a href="/theme_settings/<?php echo h($classUrl); ?>/confirm/<?php echo h($key); ?>/small" class="btn btn-primary btn-small" role="button"><?php echo __('確認')?></a>
+							<p class="text-center" style="padding-top:5px;">
+								<a href="/theme_settings/<?php echo $classUrl; ?>/confirm/{{theme.key}}/<?php echo $listType; ?>" class="btn btn-primary">
+									<?php echo __("設定確認"); ?>
+								</a>
+							</p>
 						</td>
 						<td>
-
-							<?php echo $this->Html->image(h($i["snapshot"]), array(
-								'class'=>"media-object",
-								'alt'=>h($i['name']),
-								'style'=>'width:100px;'
-							)); ?>
-
-
-					</td><td>
-							<h4 class="media-heading"><?php echo h($i['name']) ; ?></h4>
-							<?php echo h($i['description']); ?>
-					</td>
+							<a href="/theme_settings/<?php echo $classUrl; ?>/confirm/{{key}}">
+								<img src="{{snapshot(theme.snapshot)}}" alt="theme.name" width="140" height="84">
+							</a>
+						</td>
+						<td>
+							<h4>{{theme.name}}</h4>
+							<p>{{strimwidth(theme.description)}}</p>
+						</td>
+						<td></td>
 					</tr>
-
-				<!--
-				<div class="col-sm-6 col-md-3">
-					<div class="thumbnail">
-						<?php echo $this->Html->image('/theme_settings/'. h($key).'/snapshot.png' , array('class'=>"img-thumbnail")); ?>
-						<div class="caption">
-							<h3 class="text-center"><?php echo h($i['name']); ?></h3>
-							<p><?php echo nl2br(h($i['description'])); ?></p>
-							<p class="text-center">
-								<a href="/theme_settings/<?php echo h($classUrl); ?>/confirm/<?php echo h($key); ?>" class="btn btn-primary" role="button"><?php echo __('設定確認/詳細を見る')?></a>
-							</p>
-						</div>
-					</div>
+					</table>
 				</div>
-				-->
+			</div>
 
-			<?php } ?>
-			</table>
 		</div>
-
-
 	</div>
-</div>
+
 
 <!-- 確認用モーダル  -->
 
@@ -100,18 +84,17 @@ $this->Html->script("ThemeSettings.theme_site.js", false , array('inline'=>false
 	<div class="modal-dialog modal-open">
 		<div class="modal-content">
 			<div class="modal-header">
-				<?php //var_dump($_POST); ?>
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				<h4 class="modal-title" id="myModalLabel">テーマの設定</h4>
 			</div>
 			<div class="modal-body">
 				<?php echo __("テーマを設定しますか？"); ?>
 				<p class="text-center">
-					<a href="/theme_settings/<?php echo h($classUrl); ?>/" class="btn btn-default" role="button"><?php echo __('キャンセル')?></a>
-					<?php //TODO:POST ?>
+					<a href="/theme_settings/<?php echo h($classUrl); ?>/index/<?php echo $listType; ?>" class="btn btn-default" role="button"><?php echo __('キャンセル')?></a>
+
 					<a href="javascript:void(0)" id="btnSiteThemePost"  class="btn btn-primary" role="button"><?php echo __('設定する')?></a>
 					<?php echo $this->Form->create(null, array("id"=>"SiteThemePost")); ?>
-					<?php echo $this->Form->input("ThemeSiteValue.value" , array(
+					<?php echo $this->Form->input("ThemeSettingsSiteValue.value" , array(
 							"type"=>"hidden",
 							//"name" => "data[value]",
 							"value" => h($targetTheme)
@@ -124,8 +107,9 @@ $this->Html->script("ThemeSettings.theme_site.js", false , array('inline'=>false
 			<div class="modal-header">
 				<h4 class="modal-title" id="myModalLabel">テーマの詳細情報</h4>
 			</div>
+			<?php // echo '<pre>';  var_dump($themeInfo); echo '</pre>'; ?>
 			<div class="modal-body">
-				<p class="text-center"><?php echo $this->Html->image('/theme_settings/'. h($targetTheme).'/snapshot.png' , array('class'=>"img-thumbnail")); ?></p>
+				<p class="text-center"><?php echo $this->Html->image($themeInfo['snapshot'] , array('class'=>"img-thumbnail")); ?></p>
 				<h2><?php echo h($themeInfo["name"]); ?></h2>
 				<div>
 					<h4><?php echo __("テーマの説明"); ?></h4>
@@ -182,4 +166,4 @@ $this->Html->script("ThemeSettings.theme_site.js", false , array('inline'=>false
 
 
 
-<?php } ?>
+<?php  } ?>

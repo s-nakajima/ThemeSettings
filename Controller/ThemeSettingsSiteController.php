@@ -14,7 +14,7 @@ class ThemeSettingsSiteController extends AppController {
  * helper
  * @var array
  */
-	public $helpers = array('Form' , 'Html');
+	public $helpers = array('Form', 'Html');
 
 /**
  * SiteTheme model class格納用
@@ -37,7 +37,7 @@ class ThemeSettingsSiteController extends AppController {
 	public function beforeFilter() {
 		parent::beforeFilter();
 		$this->Auth->allow();
-		$this->set("classUrl", "theme_site");
+		$this->set("classUrl", "theme_settings_site");
 		$this->ThemeSettingsSite = Classregistry::init("ThemeSettings.ThemeSettingsSite");
 		$this->ThemeSettingsSiteValue = Classregistry::init("ThemeSettings.ThemeSettingsSiteValue");
 	}
@@ -48,13 +48,15 @@ class ThemeSettingsSiteController extends AppController {
  * @author Takako Miyagawa <nekoget@gmail.com>
  **/
 	public function index($listType = "") {
-		if($listType == "small") {
+		if ($listType == "small") {
 			$this->view = "index_small";
 		}
+		//$this->view = "index_small";
 		$themeList = $this->getThemeList();
 		$this->set("confirm", false); //確認モーダル表示 OFF
 		$this->set('themeList', $themeList);
-		$this->set('listType' , $listType);
+		$this->set('listType', $listType);
+		$this->set('themeListJson', $this->__createJson($themeList));
 		return $this->render();
 	}
 
@@ -62,7 +64,7 @@ class ThemeSettingsSiteController extends AppController {
  * テーマの設定確認画面
  * @param string $theme
  */
-	public function confirm($theme = "default", $listType="") {
+	public function confirm($theme = "default", $listType = "") {
 		//themeが使用可能かどうかチェック
 		$themeList = $this->getThemeList();
 		if (! isset($themeList[$theme]) || ! $themeList[$theme]) {
@@ -74,8 +76,10 @@ class ThemeSettingsSiteController extends AppController {
 		}
 		//getのとき
 		if (! $this->request->isPost()) {
-			return $this->__confirmForm($theme , $listType);
+			return $this->__confirmForm($theme, $listType);
 		}
+
+
 		//Postのとき
 		if ($this->request->isPost()) {
 			$ck = $this->ThemeSettingsSite->updateTheme($this->request->data);
@@ -93,22 +97,10 @@ class ThemeSettingsSiteController extends AppController {
 					$this->set("errors", $errors["ThemeSettingsSiteValue"]["value"]);
 					$this->view = "index";
 					return $this->index();
-				} else {
-					//バリデーション以外のエラー
-					$this->view = "index";
-					return $this->index();
 				}
-				$this->set("errors", "");
-				$this->set("confirm", false); //確認モーダル表示 ON
+				//バリデーション以外のエラー
 				$this->view = "index";
-				$this->theme = $theme;
-				$themeList = $this->getThemeList();
-				$oldTheme = $this->ThemeSettingsSite->getTheme();
-				$this->set("oldTheme", $oldTheme);
-				$this->set('themeList', $themeList); //テーマ一覧を取得する
-				$this->set("themeInfo", $themeList[$theme]);
-				$this->set("targetTheme", $theme);
-				return $this->render();
+				return $this->index();
 			}
 		}
 	}
@@ -119,20 +111,21 @@ class ThemeSettingsSiteController extends AppController {
  * @param $theme
  * @return CakeResponse
  */
-	private function __confirmForm($theme , $listType="") {
+	private function __confirmForm($theme = "", $listType = "") {
 		$this->view = "index";
-		if($listType == "small") {
+		if ($listType == "small") {
 			$this->view = "indexSmall";
 		}
 		$this->theme = $theme;
 		$themeList = $this->getThemeList();
-		$oldTheme = $this->ThemeSettingsSite->getTheme();
 		$this->set("confirm", true); //モーダル表示ON
-		$this->set("oldTheme", $oldTheme);
+		$this->set("targetTheme", $theme);
+		$this->set("oldTheme", $this->ThemeSettingsSite->getTheme()); //旧テーマ
 		$this->set('themeList', $themeList); //テーマ一覧を取得する
 		$this->set("themeInfo", $themeList[$theme]);
 		$this->set("targetTheme", $theme);
 		$this->set("listType", $listType);
+		$this->set('themeListJson', $this->__createJson($themeList));
 		return $this->render();
 	}
 
@@ -158,6 +151,7 @@ class ThemeSettingsSiteController extends AppController {
 					} elseif (App::themePath($d) . '/snapshot.png') {
 						$package['snapshot'] = '/theme/' . $d . '/snapshot.png';
 					}
+					$package['key'] = $d;
 					$themeList[$d] = $package;
 				}
 			}
@@ -165,5 +159,24 @@ class ThemeSettingsSiteController extends AppController {
 		ksort($themeList);
 		//var_dump($themeList);
 		return $themeList;
+	}
+
+	private function __createJson($array) {
+		if (! is_array($array)) {
+			return json_encode($array);
+		}
+		$array = array_values($array);
+		return json_encode($this->__h($array));
+	}
+
+	private function __h($array) {
+		foreach ($array as $key => $item) {
+			if (! is_array($item)) {
+				$array[$key] = htmlspecialchars($item); //htmlspecialchars
+			} else {
+				$array[$key] = $this->__h($item);
+			}
+		}
+		return $array;
 	}
 }
