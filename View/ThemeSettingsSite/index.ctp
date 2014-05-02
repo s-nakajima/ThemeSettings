@@ -18,7 +18,7 @@ $this->Html->script("ThemeSettings.theme_setting_site.js", false , array('inline
 			<div class="alert alert-warning alert-de">
 				<button type="button" class="close  alert-danger" data-dismiss="alert" aria-hidden="true">&times;</button>
 				<strong>エラーが発生しました。</strong>
-				<br><?php echo h(join("<br>" , $errors)); ?>
+				<br><?php if(isset($errors) && is_array($errors) && $errors) echo h(join("<br>" , $errors)); ?>
 				<br><?php echo __("再度テーマを選択してください。"); ?>
 			</div>
 			<?php
@@ -26,10 +26,38 @@ $this->Html->script("ThemeSettings.theme_setting_site.js", false , array('inline
 		?>
 
 		<ul class="nav nav-tabs">
-			<li  class="active"><a href="/theme_settings/<?php echo $classUrl; ?>/index/">
-					<?php echo __("画像"); ?></a></li>
-			<li><a href="/theme_settings/<?php echo $classUrl; ?>/index/small"><?php echo __("一覧"); ?></a></li>
+			<li  class="active">
+				<?php echo
+				$this->Html->link(__("画像から選ぶ"),
+					'/theme_settings/'.$classUrl.'/index/',
+					array("class" => "")
+				);
+				?>
+			</li>
+			<li>
+				<?php echo
+				$this->Html->link(__("一覧から選ぶ"),
+					'/theme_settings/'.$classUrl.'/index/small',
+					array("class" => "")
+				);
+				?>
+			</li>
+			<li>
+				<?php echo
+				$this->Html->link(__("テーマのアップロード"),
+					'/theme_settings/theme_settings_upload/',
+					array()
+				);
+				?>
+			</li>
 		</ul>
+
+		<div class="page-header">
+			<h2><?php echo __("テーマの設定管理"); ?></h2>
+			<?php
+			echo __("サイト全体のデザインを指定します。");
+			?>
+		</div>
 
 
 		<div ng-app class="ng-app" style="display: none;">

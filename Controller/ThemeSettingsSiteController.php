@@ -4,17 +4,11 @@ App::uses('AppController', 'Controller');
 /**
  * Site Controller
  *
- * @author    @author Takako Miyagawa <nekoget@gmail.com>
+ * @author   Takako Miyagawa <nekoget@gmail.com>
  * @link     http://www.netcommons.org NetCommons Project
  * @license  http://www.netcommons.org/license.txt NetCommons License
  */
-class ThemeSettingsSiteController extends AppController {
-
-/**
- * helper
- * @var array
- */
-	public $helpers = array('Form', 'Html');
+class ThemeSettingsSiteController extends ThemeSettingsAppController {
 
 /**
  * SiteTheme model class格納用
@@ -29,6 +23,12 @@ class ThemeSettingsSiteController extends AppController {
 	public $ThemeSettingsSiteValue = null;
 
 /**
+ * ThemeListを格納するもの
+ * @var array
+ */
+	public $ThemeList = array();
+
+/**
  * beforeFilter
  *
  * @return void
@@ -36,10 +36,12 @@ class ThemeSettingsSiteController extends AppController {
  **/
 	public function beforeFilter() {
 		parent::beforeFilter();
-		$this->Auth->allow();
-		$this->set("classUrl", "theme_settings_site");
+		$this->Auth->allow(); //権限 : あとで適切なものに修正 : システム管理社
+		$this->set("classUrl", "site");//このclassへ遷移させるURL
 		$this->ThemeSettingsSite = Classregistry::init("ThemeSettings.ThemeSettingsSite");
 		$this->ThemeSettingsSiteValue = Classregistry::init("ThemeSettings.ThemeSettingsSiteValue");
+		$this->Security->requireAuth(array("confirm"));
+		$this->ThemeList = $this->__getThemeList();
 	}
 
 /**
@@ -51,12 +53,9 @@ class ThemeSettingsSiteController extends AppController {
 		if ($listType == "small") {
 			$this->view = "index_small";
 		}
-		//$this->view = "index_small";
-		$themeList = $this->getThemeList();
 		$this->set("confirm", false); //確認モーダル表示 OFF
-		$this->set('themeList', $themeList);
 		$this->set('listType', $listType);
-		$this->set('themeListJson', $this->__createJson($themeList));
+		$this->set('themeListJson', $this->__createJson());
 		return $this->render();
 	}
 
@@ -64,50 +63,92 @@ class ThemeSettingsSiteController extends AppController {
  * テーマの設定確認画面
  * @param string $theme
  */
-	public function confirm($theme = "default", $listType = "") {
+	public function confirm($theme = "Default", $listType = "") {
 		//themeが使用可能かどうかチェック
-		$themeList = $this->getThemeList();
+		$themeList = $this->ThemeList;
 		if (! isset($themeList[$theme]) || ! $themeList[$theme]) {
 			//エラー 登録できないテーマ
-			$this->set("errors", array("指定できないテーマが選択されています。"));
-			$this->view = "index";
-			$this->response->statusCode(404);
-			return $this->index();
+			return $this->__noticeThemeError($listType);
 		}
 		//getのとき
 		if (! $this->request->isPost()) {
+			//確認画面表示
 			return $this->__confirmForm($theme, $listType);
-		}
-
-
-		//Postのとき
-		if ($this->request->isPost()) {
+		} else {
+			//postとgetでのテーマの指定が違う
+			if (! $this->__checkThemeValue($theme)) {
+				return $this->__updateValidationError($listType);
+			}
+			//登録更新
 			$ck = $this->ThemeSettingsSite->updateTheme($this->request->data);
 			if ($ck) {
-				//完了画面表示 //成功した場合
-				$this->theme = $this->ThemeSettingsSite->getThemeName();
-				$this->set('themeList', $this->getThemeList()); //テーマ一覧を取得する
-				$this->set("confirm", false); //確認モーダル表示 ON
-				$this->view = "update_end"; //完了画面表示
-				return $this->render();
-			} else {
-				//バリデーションエラー
-				if (isset($this->ThemeSettingsSite->validationErrors) && $this->ThemeSettingsSite->validationErrors) {
-					$errors = $this->ThemeSettingsSite->validationErrors;
-					$this->set("errors", $errors["ThemeSettingsSiteValue"]["value"]);
-					$this->view = "index";
-					return $this->index();
-				}
-				//バリデーション以外のエラー
-				$this->view = "index";
-				return $this->index();
+				//処理成功　完了画面表示
+				return $this->__updateSuccess($theme, $listType);
 			}
+			//エラー validation errorと兼用
+			return $this->__updateValidationError($listType);
 		}
 	}
 
 /**
- * テーマ設定確認画面
+ * postとgetで指定されたテーマが同じかどうかのチェック
  *
+ * @param $theme
+ * @param $listType
+ * @return bool
+ */
+	private function __checkThemeValue($theme) {
+		if (! isset($this->request->data['ThemeSettingsSiteValue'])
+			|| ! isset($this->request->data['ThemeSettingsSiteValue']['value'])
+			|| $this->request->data['ThemeSettingsSiteValue']['value'] != $theme
+		) {
+			return false;
+		}
+		return true;
+	}
+
+/**
+ * update時 バリデーションエラーが発生した時の画面表示
+ * MEMO:テキスト等入力させる機能ではないため、エラー内容は統一させた
+ * @param $listType
+ */
+	private function __updateValidationError($listType) {
+		//$errors = $this->ThemeSettingsSite->validationErrors;
+		$this->set("errors", '指定されたテーマは、設定できません。');
+		$this->view = "index";
+		return $this->index($listType);
+	}
+
+/**
+ * 更新処理成功-完了画面
+ * @param $theme
+ * @param $listType
+ * @return CakeResponse
+ */
+	private function __updateSuccess($theme, $listType) {
+		//完了画面表示 //成功した場合
+		$this->theme = $theme;
+		$this->set('themeList', $this->ThemeList); //テーマ一覧を取得する
+		$this->set("confirm", false); //確認モーダル表示 ON
+		$this->set("listType", $listType); //表示形式
+		$this->view = "update_end"; //完了画面表示
+		return $this->render();
+	}
+
+/**
+ * 存在しないテーマ名が指定された場合の画面表示
+ * @param string $listType
+ * @return CakeResponse
+ */
+	private function __noticeThemeError($listType) {
+		$this->set("errors", array(__("指定されたテーマは、存在しないか削除されています。")));
+		$this->view = "index";
+		$this->response->statusCode(404);
+		return $this->index($listType);
+	}
+
+/**
+ * テーマ設定確認画面 get
  * @param $theme
  * @return CakeResponse
  */
@@ -117,11 +158,10 @@ class ThemeSettingsSiteController extends AppController {
 			$this->view = "indexSmall";
 		}
 		$this->theme = $theme;
-		$themeList = $this->getThemeList();
+		$themeList = $this->ThemeList;
 		$this->set("confirm", true); //モーダル表示ON
 		$this->set("targetTheme", $theme);
 		$this->set("oldTheme", $this->ThemeSettingsSite->getTheme()); //旧テーマ
-		$this->set('themeList', $themeList); //テーマ一覧を取得する
 		$this->set("themeInfo", $themeList[$theme]);
 		$this->set("targetTheme", $theme);
 		$this->set("listType", $listType);
@@ -134,49 +174,15 @@ class ThemeSettingsSiteController extends AppController {
  * テーマの情報を取得し配列にして返す
  * @return array
  */
-	public function getThemeList() {
-		$themeList = array(); //テーマの情報を格納
-		$dir = realpath(App::themePath('')) . '/';
-		//フォルダの中を取得
-		$dirList = scandir($dir, 1);
-		//フォルダ名だけのリストをつくる
-		foreach ($dirList as $d) {
-			if (is_dir($dir . $d) && ($d != '.' && $d != '..')) {
-				if (is_file($dir . $d . "/theme.json")) {
-					$file = file_get_contents($dir . $d . '/theme.json');
-					$package = json_decode($file, true);
-					$package['snapshot'] = '';
-					if (is_file(App::themePath($d) . '/snapshot.jpg')) {
-						$package['snapshot'] = '/theme/' . $d . '/snapshot.jpg';
-					} elseif (App::themePath($d) . '/snapshot.png') {
-						$package['snapshot'] = '/theme/' . $d . '/snapshot.png';
-					}
-					$package['key'] = $d;
-					$themeList[$d] = $package;
-				}
-			}
-		}
-		ksort($themeList);
-		//var_dump($themeList);
-		return $themeList;
+	private function __getThemeList() {
+		return $this->ThemeSettingsThemeList->getList($this);
 	}
 
-	private function __createJson($array) {
-		if (! is_array($array)) {
-			return json_encode($array);
-		}
-		$array = array_values($array);
-		return json_encode($this->__h($array));
-	}
-
-	private function __h($array) {
-		foreach ($array as $key => $item) {
-			if (! is_array($item)) {
-				$array[$key] = htmlspecialchars($item); //htmlspecialchars
-			} else {
-				$array[$key] = $this->__h($item);
-			}
-		}
-		return $array;
+/**
+ * テーマリストのjsonを取得する
+ * @return mixed
+ */
+	private function __createJson() {
+		return $this->ThemeSettingsThemeList->getJson($this);
 	}
 }
