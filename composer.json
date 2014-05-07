@@ -1,5 +1,5 @@
 {
-    "name":        "netcommons/theme_settings",
+    "name":        "netcommons/theme-settings",
     "description": "ThemeSettings Plugin for CakePHP",
     "type":        "cakephp-plugin",
     "keywords":    ["cakephp", "theme"],
