@@ -29,7 +29,7 @@
 			<div class="modal-header">
 				<h4 class="modal-title" id="myModalLabel">テーマの詳細情報</h4>
 			</div>
-			<?php // echo '<pre>';  var_dump($themeInfo); echo '</pre>'; ?>
+
 			<div class="modal-body">
 				<p class="text-center"><?php echo $this->Html->image($themeInfo['snapshot'] , array('class'=>"img-thumbnail")); ?></p>
 				<h2><?php echo h($themeInfo["name"]); ?></h2>
