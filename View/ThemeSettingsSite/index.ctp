@@ -60,8 +60,8 @@ $this->Html->script("ThemeSettings.theme_setting_site.js", false , array('inline
 		</div>
 
 
-		<div ng-app class="ng-app" style="display: none;">
-			<div ng-controller="ThemeSettingsSiteIndexCtrl">
+		<div ng-app="ThemeSettings">
+			<div ng-controller='ThemeSettingsSiteIndexCtrl'>
 				<?php echo $this->element('ThemeSettings.site_index_search'); //検索フォームパーツ ?>
 
 				<div class="row" ng-onload="{{setJson()}}">
@@ -77,9 +77,15 @@ $this->Html->script("ThemeSettings.theme_setting_site.js", false , array('inline
 						</div>
 					</div>
 				</div>
-
 			</div>
 		</div>
+
+
+
+
+
+
+
 
 
 	</div>
@@ -87,8 +93,10 @@ $this->Html->script("ThemeSettings.theme_setting_site.js", false , array('inline
 
 
 
-
 <!-- 確認用モーダル  -->
 <?php if(isset($confirm) && $confirm) {
 	echo $this->element('ThemeSettings.site_index_modal');
 }
+
+
+
