@@ -54,11 +54,10 @@ class ThemeSettingsThemeListComponent extends Component {
  * @return string
  */
 	public function getJson(Controller $controller) {
-		$array = $this->ThemeList;
-		if (! $array) {
+		if (! $this->ThemeList || $this->ThemeList == array()) {
 			$this->getList($controller);
 		}
-		$array = array_values($array);
+		$array = array_values($this->ThemeList);
 		return json_encode($this->__h($controller, $array));
 	}
 /**

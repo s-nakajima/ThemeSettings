@@ -39,31 +39,26 @@
 					<h4><?php echo __("サイト"); ?></h4>
 					<?php echo $this->Html->link(h($themeInfo["homepage"]), h($themeInfo["homepage"]), array("target"=>"_blank")); ?>
 					<h4><?php echo __("作者"); ?></h4>
-					<?php if(isset($themeInfo["author"]) && $themeInfo["author"]) {
-						echo h($themeInfo["author"]);
-					}
-					elseif(isset($themeInfo["authors"]) && $themeInfo["authors"])
-					{
-						foreach($themeInfo["authors"] as $i)
-						{
-							if(isset($i["name"]) && $i["name"]) {
+					<?php if (isset($themeInfo["authors"]) && $themeInfo["authors"]) {
+						foreach($themeInfo["authors"] as $i) {
+							if (isset($i["name"]) && $i["name"]) {
 								echo h($i["name"]);
 							}
-							if(isset($i["homepage"]) && $i["homepage"]) {
+							if (isset($i["homepage"]) && $i["homepage"]) {
 								echo "<br>".$this->Html->link(h($i["homepage"]) , h($i["homepage"]) , array("target"=>"_blank"));
 							}
 						}
 					}
 					?>
 					<h4><?php echo __("ライセンス"); ?></h4>
-					<?php foreach($themeInfo['licenses'] as $key=>$i) {
+					<?php foreach ($themeInfo['licenses'] as $key=>$i) {
 						echo h($i["type"]);
-						if(isset($i["url"]) && $i["url"]) {
+						if (isset($i["url"]) && $i["url"]) {
 							echo "<br>".$this->Html->link(h($i["url"]) , h($i["url"]) , array("target"=>"_blank"));
 						}
 					} ?>
 					<h4><?php echo __("必要構成"); ?></h4>
-					<?php foreach($themeInfo['dependencies'] as $key=>$i) {
+					<?php foreach ($themeInfo['dependencies'] as $key=>$i) {
 						echo h($key) . " : ";
 						echo h($i);
 						echo "<br>";

@@ -49,6 +49,9 @@ class ThemeSettingsSiteControllerTest extends ControllerTestCase {
 		//存在しないテーマを指定
 		$this->testAction('/theme_settings/theme_settings_site/confirm/UnitTest2', array('method' => 'get'));
 		$this->assertTextNotContains('ERROR', $this->view);
+		//存在しないテーマを指定
+		$this->testAction('/theme_settings/theme_settings_site/confirm/UnitTest2/small', array('method' => 'get'));
+		$this->assertTextNotContains('ERROR', $this->view);
 		//postのとき
 		$this->testAction('/theme_settings/theme_settings_site/confirm/UnitTest2', array('method' => 'post'));
 		$this->assertTextNotContains('ERROR', $this->view);
