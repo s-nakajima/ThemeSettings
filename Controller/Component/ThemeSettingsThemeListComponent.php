@@ -18,7 +18,6 @@ class ThemeSettingsThemeListComponent extends Component {
 
 /**
  * テーマ一覧をarrayで返す
- * TODO:キャッシュしたい
  * @param Controller $controller
  * @return array
  */
@@ -28,19 +27,20 @@ class ThemeSettingsThemeListComponent extends Component {
 		//フォルダの中を取得
 		$dirList = scandir($dir, 1);
 		//フォルダ名だけのリストをつくる
+		$package['snapshot'] = '';
 		foreach ($dirList as $d) {
 			if (is_dir($dir . $d) && ($d != '.' && $d != '..')) {
 				if (is_file($dir . $d . "/theme.json")) {
 					$file = file_get_contents($dir . $d . '/theme.json');
 					$package = json_decode($file, true);
-					$package['snapshot'] = '';
-					if (is_file(App::themePath($d) . '/snapshot.jpg')) {
+					if (is_file(App::themePath($d) . 'webroot/snapshot.jpg')) {
 						$package['snapshot'] = '/theme/' . $d . '/snapshot.jpg';
-					} elseif (App::themePath($d) . '/snapshot.png') {
+					} elseif (is_file(App::themePath($d) . 'webroot/snapshot.png')) {
 						$package['snapshot'] = '/theme/' . $d . '/snapshot.png';
 					}
 					$package['key'] = $d;
 					$themeList[$d] = $package;
+					$package['snapshot'] = '';
 				}
 			}
 		}
@@ -57,9 +57,6 @@ class ThemeSettingsThemeListComponent extends Component {
 		$array = $this->ThemeList;
 		if (! $array) {
 			$this->getList($controller);
-		}
-		if (! is_array($array)) {
-			return json_encode($array);
 		}
 		$array = array_values($array);
 		return json_encode($this->__h($controller, $array));
