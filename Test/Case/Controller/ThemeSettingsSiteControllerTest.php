@@ -72,6 +72,7 @@ class ThemeSettingsSiteControllerTest extends ControllerTestCase {
 		));
 		$this->assertTextEquals($this->Controller->theme, 'Amelia');
 		$this->assertTextEquals($this->Controller->view, 'update_end');
+		$this->assertTextContains('alert-success', $this->view);
 
 		//セキュリティコンポーネント処理
 		$this->Controller = $this->generate('ThemeSettings.ThemeSettingsSite', array(
@@ -87,6 +88,7 @@ class ThemeSettingsSiteControllerTest extends ControllerTestCase {
 		));
 		$this->assertTextEquals($this->Controller->theme, 'Default');
 		$this->assertTextEquals($this->Controller->view, 'update_end');
+		$this->assertTextContains('alert-success', $this->view);
 
 		//getとpostされたテーマが違う セキュリティコンポーネントはOK
 		$this->Controller = $this->generate('ThemeSettings.ThemeSettingsSite', array(
@@ -124,7 +126,6 @@ class ThemeSettingsSiteControllerTest extends ControllerTestCase {
 				'Security'
 			),
 		));
-
 		$this->Controller->ThemeSettingsSiteValue = Classregistry::init("ThemeSettings.ThemeSettingsSiteValue");
 		$this->Controller->ThemeSettingsSiteValue->validate = array(
 			'value' => array(
