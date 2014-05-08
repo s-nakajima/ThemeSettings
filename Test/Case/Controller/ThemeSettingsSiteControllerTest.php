@@ -68,7 +68,9 @@ class ThemeSettingsSiteControllerTest extends ControllerTestCase {
 			'method' => 'post'
 		));
 		$this->assertTextEquals($this->Controller->theme, 'Amelia');
+		$this->assertTextEquals($this->Controller->view, 'update_end');
 
+		//セキュリティコンポーネント処理
 		$this->Controller = $this->generate('ThemeSettings.ThemeSettingsSite', array(
 			'components' => array(
 				'Security'
@@ -81,7 +83,9 @@ class ThemeSettingsSiteControllerTest extends ControllerTestCase {
 			'method' => 'post'
 		));
 		$this->assertTextEquals($this->Controller->theme, 'Default');
-		//getとpostされたテーマが違う
+		$this->assertTextEquals($this->Controller->view, 'update_end');
+
+		//getとpostされたテーマが違う セキュリティコンポーネントはOK
 		$this->Controller = $this->generate('ThemeSettings.ThemeSettingsSite', array(
 			'components' => array(
 				'Security'
@@ -94,7 +98,9 @@ class ThemeSettingsSiteControllerTest extends ControllerTestCase {
 			'method' => 'post'
 		));
 		$this->assertTextEquals($this->Controller->theme, 'Default');
-		//postでもgetでもない
+		$this->assertTextEquals($this->Controller->view, 'index');
+
+		//deleteの場合はpostとして扱われる。 セキュリティコンポーネントはOK
 		$this->Controller = $this->generate('ThemeSettings.ThemeSettingsSite', array(
 			'components' => array(
 				'Security'
@@ -107,7 +113,9 @@ class ThemeSettingsSiteControllerTest extends ControllerTestCase {
 			'method' => 'delete'
 		));
 		$this->assertTextEquals($this->Controller->theme, 'Amelia');
+		$this->assertTextEquals($this->Controller->view, 'index');
 
+		//バリデーションエラーNG
 		$this->Controller = $this->generate('ThemeSettings.ThemeSettingsSite', array(
 			'components' => array(
 				'Security'
@@ -123,13 +131,13 @@ class ThemeSettingsSiteControllerTest extends ControllerTestCase {
 				)
 			)
 		);
-
 		$data = array();
-		$data['ThemeSettingsSiteValue']['value'] = 'Amelia';
-		$this->testAction('/theme_settings/theme_settings_site/confirm/Amelia', array(
+		$data['ThemeSettingsSiteValue']['value'] = 'Default';
+		$this->testAction('/theme_settings/theme_settings_site/confirm/Default', array(
 			'data' => $data,
 			'method' => 'post'
 		));
-		//$this->assertTextEquals($this->Controller->theme, 'Amelia');
+		$this->assertTextEquals($this->Controller->theme, 'Default');
+		$this->assertTextEquals($this->Controller->view, 'index');
 	}
 }
