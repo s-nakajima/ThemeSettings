@@ -10,3 +10,8 @@ Router::connect('/theme_settings/site/', array(
 	'controller' => 'ThemeSettingsSite',
 	'action' => 'index'
 ));
+Router::connect('/theme_settings/site', array(
+	'plugin' => 'ThemeSettings',
+	'controller' => 'ThemeSettingsSite',
+	'action' => 'index'
+));
