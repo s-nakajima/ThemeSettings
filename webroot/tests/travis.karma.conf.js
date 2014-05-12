@@ -15,20 +15,25 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      
+        '../../../../app/Plugin/NetCommons/webroot/angular/angular.min.js',
+        '../../../../app/Plugin/NetCommons/webroot/jquery/jquery.min.js',
+        '../../../../vendors/bower_components/angular-mocks/angular-mocks.js',
+        '../js/theme_setting_site.js',
+        'spec/javascripts/theme_setting_site.spec.js'
+
     ],
 
 
     // list of files to exclude
     exclude: [
-      
+
     ],
 
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-    
+         //'../js/*.js': 'coverage'
     },
 
 
@@ -57,11 +62,17 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome'],
+    browsers: ['PhantomJS'],
 
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false
+    singleRun: false,
+
+    // optionally, configure the reporter
+    coverageReporter: {
+          type : 'html',
+          dir : 'coverage/'
+    }
   });
 };
