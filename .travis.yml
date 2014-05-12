@@ -39,7 +39,7 @@ before_script:
   - sudo apt-get install npm
   - npm install -g bower
   - bower install
-  - sudo npm install   jasmine-node karma karma-coverage karma-jasmine karma-firefox-launcher karma-phantomjs-launcher
+  - npm install jasmine-node karma karma-coverage karma-jasmine karma-firefox-launcher karma-phantomjs-launcher
 
 
 script:
