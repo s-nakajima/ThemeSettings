@@ -15,12 +15,16 @@
         "cakephp/cakephp":        "~2.4",
         "cakephp/debug_kit":      "~2.2",
         "cakedc/migrations":      "~2.2",
+        "ezyang/htmlpurifier":    "~4.6",
+        "chronon/mobile_detect":  "*",
         "twbs/bootstrap":         "~3.1",
-        "components/jquery":      "~2.1"
+        "components/jquery":      "~2.1",
+        "netcommons/install":     "~0.0"
     },
     "require-dev": {
         "netcommons/users":       "dev-master",
-        "satooshi/php-coveralls": "dev-master"
+        "satooshi/php-coveralls": "dev-master",
+        "mustangostang/spyc": "dev-master"
     },
     "config": {
         "vendor-dir": "vendors"
