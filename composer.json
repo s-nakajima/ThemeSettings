@@ -18,8 +18,7 @@
         "ezyang/htmlpurifier":    "~4.6",
         "chronon/mobile_detect":  "*",
         "twbs/bootstrap":         "~3.1",
-        "components/jquery":      "~2.1",
-        "netcommons/install":     "~0.0"
+        "components/jquery":      "~2.1"
     },
     "require-dev": {
         "netcommons/users":       "dev-master",
