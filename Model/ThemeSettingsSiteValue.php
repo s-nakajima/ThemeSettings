@@ -53,15 +53,15 @@ class ThemeSettingsSiteValue extends AppModel {
 			'alphaNumeric' => array(
 				'rule' => array('alphaNumeric'), //アルファベットOR数字
 				'required' => true,
-				'message' => "登録できないテーマです。"
+				'message' => "Please enter the number or alphabet."
 				),
 			'maxLength' => array(
 				'rule' => array('maxLength', 100), //１００文字以内
-				'message' => "登録できないテーマです。"
+				'message' => "Please enter more than 100 characters."
 			),
 			'maxLength' => array(
 				'rule' => array('minlength', 1), //1文字以上
-				'message' => "登録できないテーマです。"
+				'message' => "Please input of one or more characters."
 			)
 		)
 	);
