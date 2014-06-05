@@ -46,6 +46,8 @@ class ThemeSettingsSiteController extends ThemeSettingsAppController {
 
 /**
  * index
+ *
+ * @param string $listType
  * @return void
  * @author Takako Miyagawa <nekoget@gmail.com>
  **/
@@ -61,7 +63,9 @@ class ThemeSettingsSiteController extends ThemeSettingsAppController {
 
 /**
  * テーマの設定確認画面
+ *
  * @param string $theme
+ * @param string $listType
  */
 	public function confirm($theme = "Default", $listType = "") {
 		//themeが使用可能かどうかチェック
@@ -110,7 +114,7 @@ class ThemeSettingsSiteController extends ThemeSettingsAppController {
 /**
  * update時 バリデーションエラーが発生した時の画面表示
  * MEMO:テキスト等入力させる機能ではないため、エラー内容は統一させた
- * @param $listType
+ * @param string $listType
  */
 	private function __updateValidationError($listType) {
 		//$errors = $this->ThemeSettingsSite->validationErrors;
@@ -121,8 +125,9 @@ class ThemeSettingsSiteController extends ThemeSettingsAppController {
 
 /**
  * 更新処理成功-完了画面
- * @param $theme
- * @param $listType
+ *
+ * @param string $theme
+ * @param string $listType
  * @return CakeResponse
  */
 	private function __updateSuccess($theme, $listType) {
@@ -137,6 +142,7 @@ class ThemeSettingsSiteController extends ThemeSettingsAppController {
 
 /**
  * 存在しないテーマ名が指定された場合の画面表示
+ *
  * @param string $listType
  * @return CakeResponse
  */
