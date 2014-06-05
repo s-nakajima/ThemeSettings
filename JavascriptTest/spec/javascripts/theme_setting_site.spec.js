@@ -5,7 +5,7 @@ describe("theme_setting_site", function() {
     });
 
     //load module
-    beforeEach(module('ThemeSettings'));
+    beforeEach(module('NetCommonsApp'));
 
     //controller
     beforeEach(inject(function($controller){
@@ -77,7 +77,6 @@ describe("theme_setting_site", function() {
         expect(scope.ThemeList).toNotBe(ThemeSettingThemeList);
 
     }));
-
 
 
 });

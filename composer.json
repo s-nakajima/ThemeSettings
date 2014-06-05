@@ -28,7 +28,8 @@
     "require-dev": {
         "netcommons/users":       "dev-master",
         "satooshi/php-coveralls": "dev-master",
-        "mustangostang/spyc": "dev-master"
+        "mustangostang/spyc": "dev-master",
+        "netcommons/net-commons": "dev-master"
     },
     "config": {
         "vendor-dir": "vendors"

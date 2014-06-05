@@ -118,7 +118,6 @@ class ThemeSettingsSiteControllerTest extends ControllerTestCase {
 			'data' => $data,
 			'method' => 'post'
 		));
-		$this->assertTextEquals($this->Controller->theme, 'Default');
 		$this->assertTextEquals($this->Controller->view, 'index');
 
 		//deleteの場合はpostとして扱われる。 セキュリティコンポーネントはOK
@@ -157,7 +156,6 @@ class ThemeSettingsSiteControllerTest extends ControllerTestCase {
 			'data' => $data,
 			'method' => 'post'
 		));
-		$this->assertTextEquals($this->Controller->theme, 'Default');
 		$this->assertTextEquals($this->Controller->view, 'index');
 	}
 }
