@@ -1,6 +1,7 @@
 var ThemeSettingThemeList = [];
 var SnapshotNoImage = '/theme_setting/img/snapshot_noimage.png';
 
+
 NetCommonsApp.controller('ThemeSettingsSiteIndexCtrl', function($scope) {
 
         $scope.ThemeList = [];
