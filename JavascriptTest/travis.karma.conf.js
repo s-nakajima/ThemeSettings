@@ -17,11 +17,11 @@ module.exports = function(config) {
     files: [
         '../../../../app/Plugin/NetCommons/webroot/angular/angular.min.js',
         '../../../../app/Plugin/NetCommons/webroot/jquery/jquery.min.js',
+        '../../../../app/Plugin/NetCommons/webroot/angular-bootstrap/ui-bootstrap.min.js',
         '../../../../vendors/bower_components/angular-mocks/angular-mocks.js',
         '../../../../app/Plugin/NetCommons/webroot/base/js/base.js',
         '../webroot/js/theme_setting_site.js',
         'spec/javascripts/theme_setting_site.spec.js'
-
     ],
 
 

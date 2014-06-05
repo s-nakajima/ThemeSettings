@@ -22,7 +22,6 @@ module.exports = function(config) {
         '../../../../app/Plugin/NetCommons/webroot/base/js/base.js',
         '../webroot/js/theme_setting_site.js',
         'spec/javascripts/theme_setting_site.spec.js'
-
     ],
 
 
