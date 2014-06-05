@@ -11,14 +11,15 @@
 class ThemeSettingsThemeListComponent extends Component {
 
 /**
- * テーマリスト
+ * theme list
  * @var array
  */
 	public $ThemeList = array();
 
 /**
- * テーマ一覧をarrayで返す
- * @param Controller $controller
+ * theme list (array)
+ *
+ * @param Controller $controller controller class object
  * @return array
  */
 	public function getList(Controller $controller) {
@@ -50,7 +51,9 @@ class ThemeSettingsThemeListComponent extends Component {
 	}
 
 /**
- * テーマリストのjsonを返す
+ * theme list (json)
+ *
+ * @param Controller $controller controller class object
  * @return string
  */
 	public function getJson(Controller $controller) {
@@ -62,7 +65,9 @@ class ThemeSettingsThemeListComponent extends Component {
 	}
 /**
  * jsonで吐き出す前に配列の中身をh()する
- * @param $array
+ *
+ * @param Controller $controller controller class object
+ * @param array $array theme list array
  * @return mixed
  */
 	private function __h(Controller $controller, $array) {

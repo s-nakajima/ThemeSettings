@@ -47,7 +47,7 @@ class ThemeSettingsSiteController extends ThemeSettingsAppController {
 /**
  * index
  *
- * @param string $listType
+ * @param string $listType Type of display
  * @return void
  * @author Takako Miyagawa <nekoget@gmail.com>
  **/
@@ -64,8 +64,9 @@ class ThemeSettingsSiteController extends ThemeSettingsAppController {
 /**
  * テーマの設定確認画面
  *
- * @param string $theme
- * @param string $listType
+ * @param string $theme テーマ名
+ * @param string $listType Type of display
+ * @return void
  */
 	public function confirm($theme = "Default", $listType = "") {
 		//themeが使用可能かどうかチェック
@@ -97,9 +98,8 @@ class ThemeSettingsSiteController extends ThemeSettingsAppController {
 /**
  * postとgetで指定されたテーマが同じかどうかのチェック
  *
- * @param $theme
- * @param $listType
- * @return bool
+ * @param string $theme テーマ
+ * @return bool True if the same
  */
 	private function __checkThemeValue($theme) {
 		if (! isset($this->request->data['ThemeSettingsSiteValue'])
@@ -114,7 +114,9 @@ class ThemeSettingsSiteController extends ThemeSettingsAppController {
 /**
  * update時 バリデーションエラーが発生した時の画面表示
  * MEMO:テキスト等入力させる機能ではないため、エラー内容は統一させた
- * @param string $listType
+ *
+ * @param string $listType Type of display
+ * @return CakeResponse
  */
 	private function __updateValidationError($listType) {
 		//$errors = $this->ThemeSettingsSite->validationErrors;
@@ -126,8 +128,8 @@ class ThemeSettingsSiteController extends ThemeSettingsAppController {
 /**
  * 更新処理成功-完了画面
  *
- * @param string $theme
- * @param string $listType
+ * @param string $theme テーマ
+ * @param string $listType Type of display
  * @return CakeResponse
  */
 	private function __updateSuccess($theme, $listType) {
@@ -143,7 +145,7 @@ class ThemeSettingsSiteController extends ThemeSettingsAppController {
 /**
  * 存在しないテーマ名が指定された場合の画面表示
  *
- * @param string $listType
+ * @param string $listType 表示方法
  * @return CakeResponse
  */
 	private function __noticeThemeError($listType) {
@@ -155,7 +157,9 @@ class ThemeSettingsSiteController extends ThemeSettingsAppController {
 
 /**
  * テーマ設定確認画面 get
- * @param $theme
+ *
+ * @param string $theme theme
+ * @param string $listType Type of display
  * @return CakeResponse
  */
 	private function __confirmForm($theme = "", $listType = "") {
@@ -178,6 +182,7 @@ class ThemeSettingsSiteController extends ThemeSettingsAppController {
 /**
  * getThemeList
  * テーマの情報を取得し配列にして返す
+ *
  * @return array
  */
 	private function __getThemeList() {
@@ -186,6 +191,7 @@ class ThemeSettingsSiteController extends ThemeSettingsAppController {
 
 /**
  * テーマリストのjsonを取得する
+ *
  * @return mixed
  */
 	private function __createJson() {

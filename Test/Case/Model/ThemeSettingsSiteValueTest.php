@@ -53,6 +53,11 @@ class ThemeSettingsSiteValueTest extends CakeTestCase {
 		parent::tearDown();
 	}
 
+/**
+ * testSave
+ *
+ * @return void
+ */
 	public function testSave() {
 		$this->assertFalse($this->ThemeSettingsSiteValue->save(array()));
 	}

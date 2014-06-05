@@ -52,6 +52,7 @@ class ThemeSettingsSiteTest extends CakeTestCase {
 	}
 /**
  * getThemeSite サイト用テーマ名の取得
+ *
  * @return void
  */
 	public function testGetThemeName() {
@@ -68,6 +69,7 @@ class ThemeSettingsSiteTest extends CakeTestCase {
 
 /**
  * テーマ情報の取得 (1レコード分の配列）
+ *
  * @return void
  */
 	public function testGetTheme() {
@@ -78,6 +80,7 @@ class ThemeSettingsSiteTest extends CakeTestCase {
 
 /**
  * testGetThemeNoData()該当のレコードが無い場合
+ *
  * @return void
  */
 	public function testGetThemeNoData() {
@@ -94,6 +97,7 @@ class ThemeSettingsSiteTest extends CakeTestCase {
 
 /**
  * テーマのアップデート
+ *
  * @return void
  */
 	public function testUpdateTheme() {
@@ -108,6 +112,7 @@ class ThemeSettingsSiteTest extends CakeTestCase {
 
 /**
  * テーマのアップデート配列で登録
+ *
  * @return void
  */
 	public function testUpdateThemeArray() {
@@ -122,6 +127,7 @@ class ThemeSettingsSiteTest extends CakeTestCase {
 	}
 /**
  * テーマのアップデート配列で登録 + 中身がブランク
+ *
  * @return void
  */
 	public function testUpdateThemeArrayBlank() {
@@ -137,6 +143,8 @@ class ThemeSettingsSiteTest extends CakeTestCase {
 
 /**
  * テーマの新規登録
+ *
+ * @return void
  */
 	public function testCreateTheme() {
 		//データが無い場合を作る

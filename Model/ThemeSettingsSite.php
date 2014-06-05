@@ -22,9 +22,10 @@ class ThemeSettingsSite extends AppModel {
 
 /**
  * __construct
- * @param bool $id
- * @param null $table
- * @param null $ds
+ *
+ * @param bool $id id
+ * @param null $table db table
+ * @param null $ds connection
  * @return void
  */
 	public function __construct($id = false, $table = null, $ds = null) {
@@ -33,7 +34,9 @@ class ThemeSettingsSite extends AppModel {
 
 /**
  * テーマの更新
- * @param array $theme
+ *
+ * @param array $theme theme dir name
+ * @return bool True if successful
  */
 	public function updateTheme($theme) {
 		$updateData = array();
@@ -64,7 +67,8 @@ class ThemeSettingsSite extends AppModel {
 
 /**
  * サイトのテーマ名の取得
- * @return string|null
+ *
+ * @return string|null theme dir name
  */
 	public function getThemeName() {
 		$theme = $this->getTheme();
@@ -79,7 +83,8 @@ class ThemeSettingsSite extends AppModel {
 
 /**
  * サイトのテーマデータ（配列）の取得
- * @return array|null
+ *
+ * @return array|null recode
  */
 	public function getTheme() {
 		$theme = $this->find('first', array(

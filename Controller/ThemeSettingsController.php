@@ -22,6 +22,7 @@ class ThemeSettingsController extends AppController {
 
 /**
  * index
+ *
  * @return void
  * @author Takako Miyagawa <nekoget@gmail.com>
  **/

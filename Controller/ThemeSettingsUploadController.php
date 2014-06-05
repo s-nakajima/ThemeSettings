@@ -24,6 +24,11 @@ class ThemeSettingsUploadController extends ThemeSettingsAppController {
 		$this->ThemeSettingsSiteValue = Classregistry::init("ThemeSettings.ThemeSettingsSiteValue");
 	}
 
+/**
+ * index
+ *
+ * @return void
+ */
 	public function index() {
 	}
 }

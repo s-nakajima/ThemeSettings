@@ -30,9 +30,9 @@ class ThemeSettingsSiteValue extends AppModel {
 /**
  * __construct
  *
- * @param bool $id
- * @param null $table
- * @param null $ds
+ * @param bool $id id
+ * @param null $table db table
+ * @param null $ds connection
  * @return void
  */
 	public function __construct($id = false, $table = null, $ds = null) {

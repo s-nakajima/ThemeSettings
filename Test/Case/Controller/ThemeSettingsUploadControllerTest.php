@@ -16,6 +16,7 @@ class ThemeSettingsUploadControllerTest extends ControllerTestCase {
 
 /**
  * setUp
+ *
  * @return   void
  */
 	public function setUp() {
@@ -36,6 +37,8 @@ class ThemeSettingsUploadControllerTest extends ControllerTestCase {
 
 /**
  * index
+ *
+ * @return   void
  */
 	public function testIndex() {
 		$this->testAction('/theme_settings/theme_settings_upload/index', array('method' => 'get'));

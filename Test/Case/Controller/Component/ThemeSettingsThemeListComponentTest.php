@@ -31,6 +31,7 @@ class ThemeSettingsThemeListComponentTest extends CakeTestCase {
 
 /**
  * getList
+ *
  * @return void
  */
 	public function testGetList() {
@@ -44,6 +45,7 @@ class ThemeSettingsThemeListComponentTest extends CakeTestCase {
 
 /**
  * getList
+ *
  * @return void
  */
 	public function testGetJson() {

@@ -16,6 +16,7 @@ class ThemeSettingsSiteControllerTest extends ControllerTestCase {
 
 /**
  * setUp
+ *
  * @return   void
  */
 	public function setUp() {
@@ -33,6 +34,11 @@ class ThemeSettingsSiteControllerTest extends ControllerTestCase {
 		'SiteSettingValue',
 	);
 
+/**
+ * indexのテスト
+ *
+ * @return void
+ */
 	public function testIndex() {
 		$this->testAction('/theme_settings/theme_settings_site/index', array('method' => 'get'));
 		$this->assertTextNotContains('ERROR', $this->view);
@@ -40,6 +46,11 @@ class ThemeSettingsSiteControllerTest extends ControllerTestCase {
 		$this->assertTextNotContains('ERROR', $this->view);
 	}
 
+/**
+ * 確認画面 getのテスト
+ *
+ * @return void
+ */
 	public function testConfirmFromGet() {
 		//存在してるテーマを指定
 		$this->testAction('/theme_settings/theme_settings_site/confirm/Default', array('method' => 'get'));
@@ -57,6 +68,11 @@ class ThemeSettingsSiteControllerTest extends ControllerTestCase {
 		$this->assertTextNotContains('ERROR', $this->view);
 	}
 
+/**
+ * 確認画面 POSTのテスト
+ *
+ * @return void
+ */
 	public function testConfirmFromPost() {
 		//存在するテーマが指定されて、正常に更新された
 		$this->Controller = $this->generate('ThemeSettings.ThemeSettingsSite', array(
