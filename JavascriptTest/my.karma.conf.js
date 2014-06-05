@@ -18,6 +18,7 @@ module.exports = function(config) {
         '../../../../app/Plugin/NetCommons/webroot/angular/angular.min.js',
         '../../../../app/Plugin/NetCommons/webroot/jquery/jquery.min.js',
         '../../../../vendors/bower_components/angular-mocks/angular-mocks.js',
+        '../../../../app/Plugin/NetCommons/webroot/base/js/base.js',
         '../webroot/js/theme_setting_site.js',
         'spec/javascripts/theme_setting_site.spec.js'
 
@@ -62,7 +63,7 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome', 'Firefox' , 'PhantomJS'],
+    browsers: ['PhantomJS'],
 
 
     // Continuous Integration mode
