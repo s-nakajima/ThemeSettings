@@ -1,7 +1,7 @@
 <?php
 //js呼び出し
 $this->Html->script("ThemeSettings.theme_setting_site.js", false , array('inline'=>false));
-$this->Html->css('ThemeSettings.theme_settings.css', false , array('inline'=>false));
+//$this->Html->css('ThemeSettings.theme_settings.css', false , array('inline'=>false));
 ?>
 
 <script>

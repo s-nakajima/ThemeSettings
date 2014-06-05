@@ -9,4 +9,3 @@
 			</span>
 		</p>
 	</form>
-</div>
