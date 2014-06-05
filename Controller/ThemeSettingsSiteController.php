@@ -20,7 +20,7 @@ class ThemeSettingsSiteController extends ThemeSettingsAppController {
  * ThemeSettingsSiteValue model class格納用
  * @var null
  */
-	public $ThemeSettingsSiteValue = null;
+	public $siteValue = null;
 
 /**
  * ThemeListを格納するもの
@@ -39,7 +39,7 @@ class ThemeSettingsSiteController extends ThemeSettingsAppController {
 		$this->Auth->allow(); //権限 : あとで適切なものに修正 : システム管理社
 		$this->set("classUrl", "site");//このclassへ遷移させるURL
 		$this->ThemeSettingsSite = Classregistry::init("ThemeSettings.ThemeSettingsSite");
-		$this->ThemeSettingsSiteValue = Classregistry::init("ThemeSettings.ThemeSettingsSiteValue");
+		$this->siteValue = Classregistry::init("ThemeSettings.ThemeSettingsSiteValue");
 		$this->Security->requireAuth(array("confirm"));
 		$this->ThemeList = $this->__getThemeList();
 	}
