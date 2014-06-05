@@ -29,7 +29,7 @@ class ThemeSettingsSiteValueTest extends CakeTestCase {
 
 	public $ThemeSettingsSite;
 
-	public $ThemeSettingsSiteValue;
+	public $siteValue;
 
 /**
  * setUp method
@@ -39,7 +39,7 @@ class ThemeSettingsSiteValueTest extends CakeTestCase {
 	public function setUp() {
 		parent::setUp();
 		$this->ThemeSettingsSite = ClassRegistry::init('ThemeSettings.ThemeSettingsSite');
-		$this->ThemeSettingsSiteValue = ClassRegistry::init('ThemeSettings.ThemeSettingsSiteValue');
+		$this->siteValue = ClassRegistry::init('ThemeSettings.ThemeSettingsSiteValue');
 	}
 
 /**
@@ -49,7 +49,7 @@ class ThemeSettingsSiteValueTest extends CakeTestCase {
  */
 	public function tearDown() {
 		unset($this->ThemeSettingsSite);
-		unset($this->ThemeSettingsSiteValue);
+		unset($this->siteValue);
 		parent::tearDown();
 	}
 
@@ -59,6 +59,6 @@ class ThemeSettingsSiteValueTest extends CakeTestCase {
  * @return void
  */
 	public function testSave() {
-		$this->assertFalse($this->ThemeSettingsSiteValue->save(array()));
+		$this->assertFalse($this->siteValue->save(array()));
 	}
 }

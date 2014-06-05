@@ -28,18 +28,6 @@ class ThemeSettingsSiteValue extends AppModel {
 	public $name = "ThemeSettingsSiteValue";
 
 /**
- * __construct
- *
- * @param bool $id id
- * @param null $table db table
- * @param null $ds connection
- * @return void
- */
-	public function __construct($id = false, $table = null, $ds = null) {
-		parent::__construct($id, $table, $ds);
-	}
-
-/**
  * Validation rules
  *
  * @var array
