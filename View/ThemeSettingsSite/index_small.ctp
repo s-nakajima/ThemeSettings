@@ -53,7 +53,7 @@ echo $this->element('ThemeSettings.site_index_call_js');
 		</div>
 
 		<div class="row">
-			<div ng-app="ThemeSettings">
+			<div>
 				<div ng-controller="ThemeSettingsSiteIndexCtrl">
 					<?php echo $this->element('ThemeSettings.site_index_search'); //検索フォームパーツ ?>
 					<table class="table table-striped" ng-onload="{{setJson()}}">

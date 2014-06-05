@@ -1,4 +1,4 @@
-<div>
+
 	<form role="form">
 		<p class=" input-group">
 			<input type="text" class="form-control" ng-model="query" value="">

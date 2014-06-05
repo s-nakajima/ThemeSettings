@@ -1,8 +1,7 @@
 var ThemeSettingThemeList = [];
 var SnapshotNoImage = '/theme_setting/img/snapshot_noimage.png';
 
-var ThemeSettings = angular.module('ThemeSettings', []);
-ThemeSettings.controller('ThemeSettingsSiteIndexCtrl', function($scope) {
+NetCommonsApp.controller('ThemeSettingsSiteIndexCtrl', function($scope) {
 
         $scope.ThemeList = [];
         $scope.searchQuery = '';

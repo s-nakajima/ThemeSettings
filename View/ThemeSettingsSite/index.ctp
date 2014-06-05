@@ -1,6 +1,5 @@
 <?php
 //js呼び出し
-$this->Html->script("/net_commons/angular/angular.js", false , array('inline'=>false));
 $this->Html->script("ThemeSettings.theme_setting_site.js", false , array('inline'=>false));
 ?>
 <script>
@@ -60,9 +59,9 @@ $this->Html->script("ThemeSettings.theme_setting_site.js", false , array('inline
 		</div>
 
 
-		<div ng-app="ThemeSettings">
+		<div>
 			<div ng-controller='ThemeSettingsSiteIndexCtrl'>
-				<?php echo $this->element('ThemeSettings.site_index_search'); //検索フォームパーツ ?>
+				<?php //echo $this->element('ThemeSettings.site_index_search'); //検索フォームパーツ ?>
 
 				<div class="row" ng-onload="{{setJson()}}">
 					<div class="col-sm-4 col-md-3" ng-repeat="theme in ThemeList | filter:getQuery()">
