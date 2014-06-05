@@ -85,7 +85,7 @@ class ThemeSettingsSite extends AppModel {
 		$theme = $this->find('first', array(
 			'conditions' => array('ThemeSettingsSite.name' => "Theme")
 		));
-		if($theme) {
+		if ($theme) {
 			return $theme;
 		}
 		return null;
