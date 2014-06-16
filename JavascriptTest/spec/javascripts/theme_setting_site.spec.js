@@ -16,18 +16,18 @@ describe("theme_setting_site", function() {
     }));
 
     //test
-    it('setQuery()', inject(function($controller) {
+    //it('setQuery()', inject(function($controller) {
         //getQuery
-        expect(scope.getQuery()).toBe(scope.sendQuery);
+        //expect(scope.getQuery()).toBe(scope.sendQuery);
         //setQuery
-        scope.query = '';
-        scope.setQuery();
+      //  scope.query = '';
+      //  scope.setQuery();
 
-        expect('').toBe(scope.sendQuery);
-        scope.query = 'jasmine test';
-        scope.setQuery();
-        expect(scope.query).toBe(scope.sendQuery);
-    }));
+        //expect('').toBe(scope.sendQuery);
+        //scope.query = 'jasmine test';
+        //scope.setQuery();
+        //expect(scope.query).toBe(scope.sendQuery);
+    //}));
     //test
     it('getQuery()', inject(function($controller) {
         scope.sendQuery = "";
