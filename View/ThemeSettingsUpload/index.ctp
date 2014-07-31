@@ -25,4 +25,21 @@
 	</li>
 </ul>
 
-<h1>作成中</h1>
+<div class="page-header">
+	<h2><?php echo __("テーマのアップロード"); ?></h2>
+	<?php
+	echo __("テーマファイル(ZIP)をアップロードしてください。");
+	?>
+</div>
+
+<form style="margin-bottom: 5px;" onsubmit="event.returnValue = false;" enctype="multipart/form-data" action="/theme_settings/theme_settings/upload" method="post" accept-charset="utf-8">
+	<input type="file" id="upload_file" name="data[upload_file]" style="display:inline" />
+
+	<button
+		class="btn btn-primary access-counters-editor-button-request"
+		ng-click="submit();">
+		<span class="glyphicon glyphicon-share-alt"></span>
+		<span><?php echo __('アップロード'); ?></span>
+	</button>
+
+</form>
