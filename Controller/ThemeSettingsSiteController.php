@@ -11,6 +11,12 @@ App::uses('AppController', 'Controller');
 class ThemeSettingsSiteController extends ThemeSettingsAppController {
 
 /**
+ * component
+ * @var array
+ */
+	public $components = array('Security', 'ThemeSettings.ThemeSettingsThemeList');
+
+/**
  * SiteTheme model class格納用
  * @var null
  */

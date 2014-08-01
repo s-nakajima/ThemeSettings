@@ -14,5 +14,5 @@ class ThemeSettingsAppController extends AppController {
  * component
  * @var array
  */
-	public $components = array('Security', 'ThemeSettings.ThemeSettingsThemeList');
+	public $components = array('ThemeSettings.ThemeSettingsThemeList');
 }

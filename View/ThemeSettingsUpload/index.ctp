@@ -32,7 +32,7 @@
 	?>
 </div>
 
-<form style="margin-bottom: 5px;" onsubmit="event.returnValue = false;" enctype="multipart/form-data" action="/theme_settings/theme_settings/upload" method="post" accept-charset="utf-8">
+<form style="margin-bottom: 5px;" onsubmit="event.returnValue = false;" enctype="multipart/form-data" action="/theme_settings/theme_settings_upload/upload" method="post" accept-charset="utf-8">
 	<input type="file" id="upload_file" name="data[upload_file]" style="display:inline" />
 
 	<button

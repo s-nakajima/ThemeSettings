@@ -10,6 +10,12 @@ App::uses('AppController', 'Controller');
 class ThemeSettingsController extends AppController {
 
 /**
+ * component
+ * @var array
+ */
+	public $components = array('Security', 'ThemeSettings.ThemeSettingsThemeList');
+
+/**
  * beforeFilter
  *
  * @return void
