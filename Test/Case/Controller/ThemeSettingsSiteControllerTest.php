@@ -31,7 +31,6 @@ class ThemeSettingsSiteControllerTest extends ControllerTestCase {
 	public $fixtures = array(
 		'Session',
 		'SiteSetting',
-		'SiteSettingValue',
 	);
 
 /**

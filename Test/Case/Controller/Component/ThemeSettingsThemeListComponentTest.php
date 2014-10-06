@@ -23,10 +23,6 @@ class ThemeSettingsThemeListComponentTest extends CakeTestCase {
  * @var array
  */
 	public $fixtures = array(
-		//'app.site_setting',
-		//'app.created_user',
-		//'app.modified_user',
-		//'app.site_setting_value'
 	);
 
 /**

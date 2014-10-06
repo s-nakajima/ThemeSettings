@@ -22,9 +22,6 @@ class ThemeSettingsSiteValueTest extends CakeTestCase {
  */
 	public $fixtures = array(
 		'site_setting',
-		//'app.created_user',
-		//'app.modified_user',
-		'site_setting_value'
 	);
 
 	public $ThemeSettingsSite;

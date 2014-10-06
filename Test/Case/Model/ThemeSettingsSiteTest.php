@@ -7,7 +7,6 @@
  * @license  http://www.netcommons.org/license.txt NetCommons License
  */
 
-App::uses('ThemeSettingsSiteValue', 'ThemeSettings.Model');
 App::uses('ThemeSettingsSite', 'ThemeSettings.Model');
 
 /**
@@ -22,9 +21,6 @@ class ThemeSettingsSiteTest extends CakeTestCase {
  */
 	public $fixtures = array(
 		'site_setting',
-		//'app.created_user',
-		//'app.modified_user',
-		'site_setting_value'
 	);
 
 	public $ThemeSettingsSite;
@@ -37,7 +33,6 @@ class ThemeSettingsSiteTest extends CakeTestCase {
 	public function setUp() {
 		parent::setUp();
 		$this->ThemeSettingsSite = ClassRegistry::init('ThemeSettings.ThemeSettingsSite');
-		$this->ThemeSettingsSiteValue = ClassRegistry::init('ThemeSettings.ThemeSettingsSiteValue');
 	}
 
 /**
@@ -47,7 +42,6 @@ class ThemeSettingsSiteTest extends CakeTestCase {
  */
 	public function tearDown() {
 		unset($this->ThemeSettingsSite);
-		unset($this->ThemeSettingsSiteValue);
 		parent::tearDown();
 	}
 /**
@@ -75,7 +69,7 @@ class ThemeSettingsSiteTest extends CakeTestCase {
 	public function testGetTheme() {
 		//データがある場合
 		$ck = $this->ThemeSettingsSite->getTheme();
-		$this->assertTextEquals("UnitTestTheme", $ck['ThemeSettingsSiteValue']['value']);
+		$this->assertTextEquals("UnitTestTheme", $ck['ThemeSettingsSite']['value']);
 	}
 
 /**
@@ -118,7 +112,7 @@ class ThemeSettingsSiteTest extends CakeTestCase {
 	public function testUpdateThemeArray() {
 		//配列の場合のupdate処理実行
 		$theme2 = array();
-		$theme2['ThemeSettingsSiteValue']['value'] = "test2";
+		$theme2['ThemeSettingsSite']['value'] = "test2";
 		$ck = $this->ThemeSettingsSite->updateTheme($theme2);
 		$this->assertTrue($ck);
 		//名前を確認する
@@ -134,7 +128,7 @@ class ThemeSettingsSiteTest extends CakeTestCase {
 		//valueがブランク
 		$oldName = $this->ThemeSettingsSite->getThemeName();
 		$theme2 = array();
-		$theme2['ThemeSettingsSiteValue']['value'] = "";
+		$theme2['ThemeSettingsSite']['value'] = "";
 		$ck = $this->ThemeSettingsSite->updateTheme($theme2);
 		$this->assertFalse($ck); //update失敗
 		//データは下記変わらないので旧のまま。

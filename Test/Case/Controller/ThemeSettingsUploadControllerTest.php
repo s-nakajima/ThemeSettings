@@ -31,7 +31,6 @@ class ThemeSettingsUploadControllerTest extends ControllerTestCase {
 	public $fixtures = array(
 		'Session',
 		'SiteSetting',
-		'SiteSettingValue',
 		'Page'
 	);
 
