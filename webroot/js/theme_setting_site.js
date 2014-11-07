@@ -1,7 +1,17 @@
+/**
+ * @fileoverview ThemeSettings Javascript
+ * @author nekoget@gmail.com (Takako Miyagawa)
+ */
 var ThemeSettingThemeList = [];
 var SnapshotNoImage = '/theme_setting/img/snapshot_noimage.png';
 
 
+/**
+ * ThemeSettings Javascript
+ *
+ * @param {string} Controller name
+ * @param {function(scope)} Controller
+ */
 NetCommonsApp.controller('ThemeSettingsSiteIndexCtrl', function($scope) {
   $scope.ThemeList = [];
   $scope.searchQuery = '';
