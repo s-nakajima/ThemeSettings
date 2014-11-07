@@ -24,8 +24,18 @@ class ThemeSettingsSiteValueTest extends CakeTestCase {
 		'site_setting',
 	);
 
+/**
+ * ThemeSettingsSite
+ *
+ * @var array
+ */
 	public $ThemeSettingsSite;
 
+/**
+ * siteValue
+ *
+ * @var array
+ */
 	public $siteValue;
 
 /**

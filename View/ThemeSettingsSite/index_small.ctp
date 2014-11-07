@@ -11,7 +11,7 @@ echo $this->element('ThemeSettings.site_index_call_js');
 			<div class="alert alert-warning alert-de">
 				<button type="button" class="close  alert-danger" data-dismiss="alert" aria-hidden="true">&times;</button>
 				<strong>エラーが発生しました。</strong>
-				<br><?php echo h(join("<br>" , $errors)); ?>
+				<br><?php echo h(join("<br>", $errors)); ?>
 				<br><?php echo __("再度テーマを選択してください。"); ?>
 			</div>
 			<?php
@@ -22,7 +22,7 @@ echo $this->element('ThemeSettings.site_index_call_js');
 			<li>
 				<?php echo
 				$this->Html->link(__("画像から選ぶ"),
-					'/theme_settings/'.$classUrl.'/index/',
+					'/theme_settings/' . $classUrl . '/index/',
 					array("class" => "")
 				);
 				?>
@@ -30,7 +30,7 @@ echo $this->element('ThemeSettings.site_index_call_js');
 			<li class="active">
 				<?php echo
 				$this->Html->link(__("一覧から選ぶ"),
-					'/theme_settings/'.$classUrl.'/index/small',
+					'/theme_settings/' . $classUrl . '/index/small',
 					array("class" => "")
 				);
 				?>
@@ -60,7 +60,8 @@ echo $this->element('ThemeSettings.site_index_call_js');
 					<tr ng-repeat="theme in ThemeList | filter:getQuery()">
 						<td class="col-lg-1">
 							<p class="text-center" style="padding-top:5px;">
-								<a href="/theme_settings/<?php echo $classUrl; ?>/confirm/{{theme.key}}/<?php echo $listType; ?>" class="btn btn-primary">
+								<a href="/theme_settings/<?php echo $classUrl; ?>/confirm/{{theme.key}}/
+									<?php echo $listType; ?>" class="btn btn-primary">
 									<?php echo __("設定確認"); ?>
 								</a>
 							</p>
@@ -84,6 +85,6 @@ echo $this->element('ThemeSettings.site_index_call_js');
 
 
 <!-- 確認用モーダル  -->
-<?php if(isset($confirm) && $confirm) {
- 	    echo $this->element('ThemeSettings.site_index_modal');
-}
+<?php if (isset($confirm) && $confirm) : ?>
+	echo $this->element('ThemeSettings.site_index_modal');
+<?php endif;

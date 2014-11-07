@@ -23,6 +23,11 @@ class ThemeSettingsSiteTest extends CakeTestCase {
 		'site_setting',
 	);
 
+/**
+ * Model
+ *
+ * @var array
+ */
 	public $ThemeSettingsSite;
 
 /**

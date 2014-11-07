@@ -1,29 +1,40 @@
 <?php
+/**
+ * ThemeSettingsSite Controller
+ *
+ * @author Noriko Arai <arai@nii.ac.jp>
+ * @author Takako Miyagawa <nekoget@gmail.com>
+ * @link http://www.netcommons.org NetCommons Project
+ * @license http://www.netcommons.org/license.txt NetCommons License
+ * @copyright Copyright 2014, NetCommons Project
+ */
 App::uses('AppController', 'Controller');
 
 /**
- * Site Controller
+ * ThemeSettingsSite Controller
  *
- * @author   Takako Miyagawa <nekoget@gmail.com>
- * @link     http://www.netcommons.org NetCommons Project
- * @license  http://www.netcommons.org/license.txt NetCommons License
+ * @author Takako Miyagawa <nekoget@gmail.com>
+ * @package NetCommons\ThemeSettings\Controller
  */
 class ThemeSettingsSiteController extends ThemeSettingsAppController {
 
 /**
- * SiteTheme model class格納用
+ * SiteTheme model class
+ *
  * @var null
  */
 	public $SiteTheme = null;
 
 /**
- * ThemeSettingsSiteValue model class格納用
+ * ThemeSettingsSiteValue model class
+ *
  * @var null
  */
 	public $siteValue = null;
 
 /**
- * ThemeListを格納するもの
+ * ThemeList
+ *
  * @var array
  */
 	public $ThemeList = array();
@@ -49,7 +60,6 @@ class ThemeSettingsSiteController extends ThemeSettingsAppController {
  *
  * @param string $listType Type of display
  * @return void
- * @author Takako Miyagawa <nekoget@gmail.com>
  **/
 	public function index($listType = "") {
 		if ($listType == "small") {
@@ -62,7 +72,7 @@ class ThemeSettingsSiteController extends ThemeSettingsAppController {
 	}
 
 /**
- * テーマの設定確認画面
+ * confirm
  *
  * @param string $theme テーマ名
  * @param string $listType Type of display
@@ -96,7 +106,7 @@ class ThemeSettingsSiteController extends ThemeSettingsAppController {
 	}
 
 /**
- * postとgetで指定されたテーマが同じかどうかのチェック
+ * checkThemeValue
  *
  * @param string $theme テーマ
  * @return bool True if the same
@@ -112,8 +122,7 @@ class ThemeSettingsSiteController extends ThemeSettingsAppController {
 	}
 
 /**
- * update時 バリデーションエラーが発生した時の画面表示
- * MEMO:テキスト等入力させる機能ではないため、エラー内容は統一させた
+ * updateValidationError
  *
  * @param string $listType Type of display
  * @return CakeResponse
@@ -126,7 +135,7 @@ class ThemeSettingsSiteController extends ThemeSettingsAppController {
 	}
 
 /**
- * 更新処理成功-完了画面
+ * updateSuccess
  *
  * @param string $theme テーマ
  * @param string $listType Type of display
@@ -143,7 +152,7 @@ class ThemeSettingsSiteController extends ThemeSettingsAppController {
 	}
 
 /**
- * 存在しないテーマ名が指定された場合の画面表示
+ * noticeThemeError
  *
  * @param string $listType 表示方法
  * @return CakeResponse
@@ -156,7 +165,7 @@ class ThemeSettingsSiteController extends ThemeSettingsAppController {
 	}
 
 /**
- * テーマ設定確認画面 get
+ * confirmForm
  *
  * @param string $theme theme
  * @param string $listType Type of display
@@ -181,7 +190,6 @@ class ThemeSettingsSiteController extends ThemeSettingsAppController {
 
 /**
  * getThemeList
- * テーマの情報を取得し配列にして返す
  *
  * @return array
  */
@@ -190,7 +198,7 @@ class ThemeSettingsSiteController extends ThemeSettingsAppController {
 	}
 
 /**
- * テーマリストのjsonを取得する
+ * createJson
  *
  * @return mixed
  */

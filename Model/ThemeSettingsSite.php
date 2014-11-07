@@ -1,17 +1,42 @@
 <?php
+/**
+ * ThemeSettingsSite Model
+ *
+ * @author Noriko Arai <arai@nii.ac.jp>
+ * @link http://www.netcommons.org NetCommons Project
+ * @license http://www.netcommons.org/license.txt NetCommons License
+ * @copyright Copyright 2014, NetCommons Project
+ */
 
 App::uses('AppModel', 'Model');
 
+/**
+ * ThemeSettingsSite Model
+ *
+ * @author Kotaro Hokada <kotaro.hokada@gmail.com>
+ * @package NetCommons\ThemeSettingsSite\Model
+ */
 class ThemeSettingsSite extends AppModel {
 
 /**
  * テーブルの指定
+ *
  * @var bool
  */
 	public $useTable = 'site_settings';
 
+/**
+ * name
+ *
+ * @var bool
+ */
 	public $name = "ThemeSettingsSite";
 
+/**
+ * hasOne
+ *
+ * @var bool
+ */
 	public $hasOne = array(
 		'ThemeSettingsSiteValue' => array(
 			'ClassName' => 'ThemeSettingsSiteValue',

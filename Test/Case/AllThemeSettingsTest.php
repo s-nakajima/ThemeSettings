@@ -1,8 +1,24 @@
 <?php
+/**
+ * ThemeSettings All Test Case
+ *
+ * @author Noriko Arai <arai@nii.ac.jp>
+ * @author Takako Miyagawa <nekoget@gmail.com>
+ * @link http://www.netcommons.org NetCommons Project
+ * @license http://www.netcommons.org/license.txt NetCommons License
+ * @copyright Copyright 2014, NetCommons Project
+ */
+
+/**
+ * ThemeSettings All Test Case
+ *
+ * @package NetCommons\ThemeSettings\Test
+ * @codeCoverageIgnore
+ */
 class AllThemeSettingsTest extends CakeTestSuite {
 
 /**
- * テーマプラグインのテスト実行
+ * All test suite
  *
  * @return CakeTestSuite
  */

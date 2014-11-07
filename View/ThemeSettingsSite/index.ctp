@@ -1,6 +1,6 @@
 <?php
 //js呼び出し
-$this->Html->script("ThemeSettings.theme_setting_site.js", false , array('inline'=>false));
+$this->Html->script("ThemeSettings.theme_setting_site.js", false, array('inline' => false));
 ?>
 <script>
 //テーマ関連情報
@@ -17,7 +17,9 @@ $this->Html->script("ThemeSettings.theme_setting_site.js", false , array('inline
 			<div class="alert alert-warning alert-de">
 				<button type="button" class="close  alert-danger" data-dismiss="alert" aria-hidden="true">&times;</button>
 				<strong>エラーが発生しました。</strong>
-				<br><?php if(isset($errors) && is_array($errors) && $errors) echo h(join("<br>" , $errors)); ?>
+				<br><?php if (isset($errors) && is_array($errors) && $errors) : ?>
+						<?php echo h(join("<br>", $errors)); ?>
+								<?php endif; ?>
 				<br><?php echo __("再度テーマを選択してください。"); ?>
 			</div>
 			<?php
@@ -26,28 +28,16 @@ $this->Html->script("ThemeSettings.theme_setting_site.js", false , array('inline
 
 		<ul class="nav nav-tabs">
 			<li  class="active">
-				<?php echo
-				$this->Html->link(__("画像から選ぶ"),
-					'/theme_settings/'.$classUrl.'/index/',
-					array("class" => "")
-				);
+				<?php echo	$this->Html->link(__("画像から選ぶ"), '/theme_settings/' . $classUrl . '/index/', array(
+						"class" => ""
+					));
 				?>
 			</li>
 			<li>
-				<?php echo
-				$this->Html->link(__("一覧から選ぶ"),
-					'/theme_settings/'.$classUrl.'/index/small',
-					array("class" => "")
-				);
-				?>
+				<?php echo 	$this->Html->link(__("一覧から選ぶ"), '/theme_settings/' . $classUrl . '/index/small', array("class" => "")); ?>
 			</li>
 			<li>
-				<?php echo
-				$this->Html->link(__("テーマのアップロード"),
-					'/theme_settings/theme_settings_upload/',
-					array()
-				);
-				?>
+				<?php echo	$this->Html->link(__("テーマのアップロード"), '/theme_settings/theme_settings_upload/', array()); ?>
 			</li>
 		</ul>
 
@@ -93,9 +83,6 @@ $this->Html->script("ThemeSettings.theme_setting_site.js", false , array('inline
 
 
 <!-- 確認用モーダル  -->
-<?php if(isset($confirm) && $confirm) {
+<?php if (isset($confirm) && $confirm) {
 	echo $this->element('ThemeSettings.site_index_modal');
 }
-
-
-
