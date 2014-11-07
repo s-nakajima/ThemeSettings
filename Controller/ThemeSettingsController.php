@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * Theme Controller
  *
  * @author Noriko Arai <arai@nii.ac.jp>

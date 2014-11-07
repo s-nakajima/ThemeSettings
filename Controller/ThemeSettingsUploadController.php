@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * ThemeSettingsUpload Controller
  *
  * @author Noriko Arai <arai@nii.ac.jp>

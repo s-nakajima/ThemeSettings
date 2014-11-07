@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * ThemeSettingsAppController
  *
  * @author Noriko Arai <arai@nii.ac.jp>
@@ -22,13 +22,20 @@ class ThemeSettingsAppController extends AppController {
  *
  * @var array
  */
-	public $helpers = array('Cache', 'Form', 'Html');
+	public $helpers = array(
+		'Cache',
+		'Form',
+		'Html'
+	);
 
 /**
  * component
  *
  * @var array
  */
-	public $components = array('Security', 'ThemeSettings.ThemeSettingsThemeList');
+	public $components = array(
+		'Security',
+		'ThemeSettings.ThemeSettingsThemeList'
+	);
 
 }
