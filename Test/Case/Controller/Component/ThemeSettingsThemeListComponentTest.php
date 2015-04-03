@@ -11,7 +11,7 @@
 App::uses('Controller', 'Controller');
 App::uses('ComponentCollection', 'Controller');
 App::uses('ThemeSettingsThemeListComponent', 'ThemeSettings.Controller/Component');
-App::uses('SiteSetting', 'Model');
+App::uses('SiteSetting', 'NetCommons.Model');
 
 /**
  * Class ThemeSettingsThemeListComponentTestController
