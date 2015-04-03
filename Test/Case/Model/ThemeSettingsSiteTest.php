@@ -20,7 +20,7 @@ class ThemeSettingsSiteTest extends CakeTestCase {
  * @var array
  */
 	public $fixtures = array(
-		'site_setting',
+		'plugin.net_commons.site_setting',
 	);
 
 /**
