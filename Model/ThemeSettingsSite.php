@@ -30,7 +30,7 @@ class ThemeSettingsSite extends AppModel {
  *
  * @var bool
  */
-	public $name = "ThemeSettingsSite";
+	public $name = 'ThemeSettingsSite';
 
 /**
  * hasOne
@@ -40,7 +40,7 @@ class ThemeSettingsSite extends AppModel {
 	public $hasOne = array(
 		'ThemeSettingsSiteValue' => array(
 			'ClassName' => 'ThemeSettingsSiteValue',
-			'confitions' => array("ThemeSettingsSiteValue.id" => "ThemeSettingsSite.id"),
+			'confitions' => array('ThemeSettingsSiteValue.id' => 'ThemeSettingsSite.id'),
 			'dependent' => true
 		)
 	);
@@ -69,11 +69,11 @@ class ThemeSettingsSite extends AppModel {
 		if (is_array($theme)) {
 			$updateData = $theme;
 		} elseif (is_string($theme)) {
-			$updateData["ThemeSettingsSiteValue"]["value"] = $theme;
+			$updateData['ThemeSettingsSiteValue']['value'] = $theme;
 		}
 		//旧データの存在を確認
 		$ck = $this->find('first', array(
-			'conditions' => array('name' => "Theme")
+			'conditions' => array('name' => 'Theme')
 		));
 		if ($ck
 			&& isset($ck['ThemeSettingsSite'])
@@ -98,11 +98,11 @@ class ThemeSettingsSite extends AppModel {
  */
 	public function getThemeName() {
 		$theme = $this->getTheme();
-		if ($theme && isset($theme["ThemeSettingsSiteValue"])
-			&& isset($theme["ThemeSettingsSiteValue"]["value"])
-			&& $theme["ThemeSettingsSiteValue"]["value"]
+		if ($theme && isset($theme['ThemeSettingsSiteValue'])
+			&& isset($theme['ThemeSettingsSiteValue']['value'])
+			&& $theme['ThemeSettingsSiteValue']['value']
 		) {
-			return $theme["ThemeSettingsSiteValue"]["value"];
+			return $theme['ThemeSettingsSiteValue']['value'];
 		}
 		return null;
 	}
@@ -114,7 +114,7 @@ class ThemeSettingsSite extends AppModel {
  */
 	public function getTheme() {
 		$theme = $this->find('first', array(
-			'conditions' => array('ThemeSettingsSite.name' => "Theme")
+			'conditions' => array('ThemeSettingsSite.name' => 'Theme')
 		));
 		if ($theme) {
 			return $theme;

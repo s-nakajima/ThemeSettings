@@ -29,9 +29,9 @@ class ThemeSettingsUploadControllerTest extends ControllerTestCase {
  * @var array
  */
 	public $fixtures = array(
-		'Session',
 		'plugin.net_commons.site_setting',
-		'Page'
+		'plugin.pages.page',
+		'plugin.users.user',
 	);
 
 /**
