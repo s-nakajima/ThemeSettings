@@ -50,7 +50,6 @@ class ThemeSettingsSiteController extends ThemeSettingsAppController {
 		$this->Auth->allow(); //権限 : あとで適切なものに修正 : システム管理社
 		$this->set('classUrl', 'site');//このclassへ遷移させるURL
 		$this->ThemeSettingsSite = Classregistry::init('ThemeSettings.ThemeSettingsSite');
-		$this->siteValue = Classregistry::init('ThemeSettings.ThemeSettingsSiteValue');
 		$this->Security->requireAuth(array('confirm'));
 		$this->ThemeList = $this->__getThemeList();
 	}
@@ -112,9 +111,9 @@ class ThemeSettingsSiteController extends ThemeSettingsAppController {
  * @return bool True if the same
  */
 	private function __checkThemeValue($theme) {
-		if (! isset($this->request->data['ThemeSettingsSiteValue'])
-			|| ! isset($this->request->data['ThemeSettingsSiteValue']['value'])
-			|| $this->request->data['ThemeSettingsSiteValue']['value'] != $theme
+		if (! isset($this->request->data['ThemeSettingsSite'])
+			|| ! isset($this->request->data['ThemeSettingsSite']['value'])
+			|| $this->request->data['ThemeSettingsSite']['value'] != $theme
 		) {
 			return false;
 		}

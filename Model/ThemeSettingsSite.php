@@ -33,19 +33,6 @@ class ThemeSettingsSite extends AppModel {
 	public $name = 'ThemeSettingsSite';
 
 /**
- * hasOne
- *
- * @var bool
- */
-	public $hasOne = array(
-		'ThemeSettingsSiteValue' => array(
-			'ClassName' => 'ThemeSettingsSiteValue',
-			'confitions' => array('ThemeSettingsSiteValue.id' => 'ThemeSettingsSite.id'),
-			'dependent' => true
-		)
-	);
-
-/**
  * __construct
  *
  * @param bool $id id
@@ -69,24 +56,23 @@ class ThemeSettingsSite extends AppModel {
 		if (is_array($theme)) {
 			$updateData = $theme;
 		} elseif (is_string($theme)) {
-			$updateData['ThemeSettingsSiteValue']['value'] = $theme;
+			$updateData['ThemeSettingsSite']['value'] = $theme;
 		}
 		//旧データの存在を確認
 		$ck = $this->find('first', array(
-			'conditions' => array('name' => 'Theme')
+			'conditions' => array('key' => 'theme')
 		));
 		if ($ck
 			&& isset($ck['ThemeSettingsSite'])
 			&& isset($ck['ThemeSettingsSite']['id'])
 		) {
 			//データの更新
-			$updateData['ThemeSettingsSite']['name'] = 'Theme';
+			$updateData['ThemeSettingsSite']['key'] = 'theme';
 			$updateData['ThemeSettingsSite']['id'] = $ck['ThemeSettingsSite']['id'];
-			$updateData['ThemeSettingsSiteValue']['id'] = $ck['ThemeSettingsSiteValue']['id'];
 			return $this->saveAssociated($updateData);
 		} else {
 			//データの保存 insert
-			$updateData['ThemeSettingsSite']['name'] = 'Theme';
+			$updateData['ThemeSettingsSite']['key'] = 'theme';
 			return $this->saveAssociated($updateData);
 		}
 	}
@@ -98,11 +84,11 @@ class ThemeSettingsSite extends AppModel {
  */
 	public function getThemeName() {
 		$theme = $this->getTheme();
-		if ($theme && isset($theme['ThemeSettingsSiteValue'])
-			&& isset($theme['ThemeSettingsSiteValue']['value'])
-			&& $theme['ThemeSettingsSiteValue']['value']
+		if ($theme && isset($theme['ThemeSettingsSite'])
+			&& isset($theme['ThemeSettingsSite']['value'])
+			&& $theme['ThemeSettingsSite']['value']
 		) {
-			return $theme['ThemeSettingsSiteValue']['value'];
+			return $theme['ThemeSettingsSite']['value'];
 		}
 		return null;
 	}
@@ -114,7 +100,7 @@ class ThemeSettingsSite extends AppModel {
  */
 	public function getTheme() {
 		$theme = $this->find('first', array(
-			'conditions' => array('ThemeSettingsSite.name' => 'Theme')
+			'conditions' => array('ThemeSettingsSite.key' => 'theme')
 		));
 		if ($theme) {
 			return $theme;

@@ -56,7 +56,7 @@ $this->Html->script('ThemeSettings.theme_setting_site.js', false, array('inline'
 				<div class="row" ng-onload="{{setJson()}}">
 					<div class="col-sm-4 col-md-3" ng-repeat="theme in ThemeList | filter:getQuery()">
 						<div class="thumbnail">
-							<img  class="img-thumbnail" src="{{snapshot(theme.snapshot)}}" alt="{{theme.name}}">
+							<img  class="img-thumbnail" ng-src="{{snapshot(theme.snapshot)}}" alt="{{theme.name}}">
 							<div>
 								<h3 class="text-center">{{theme.name}}</h3>
 								<p class="text-center">

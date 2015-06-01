@@ -18,7 +18,7 @@
 
 					<a href="javascript:void(0)" id="btnSiteThemePost" class="btn btn-primary" role="button"><?php echo __('設定する')?></a>
 					<?php echo $this->Form->create(null, array('id' => 'SiteThemePost')); ?>
-					<?php echo $this->Form->input('ThemeSettingsSiteValue.value', array(
+					<?php echo $this->Form->input('ThemeSettingsSite.value', array(
 							'type' => 'hidden',
 							//"name" => "data[value]",
 							'value' => h($targetTheme)
