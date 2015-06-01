@@ -48,7 +48,7 @@
 									echo h($i['name']);
 								}
 								if (isset($i['homepage']) && $i['homepage']) {
-									echo "<br>" . $this->Html->link(h($i['homepage']), h($i['homepage']), array('target' => '_blank'));
+									echo '<br>' . $this->Html->link(h($i['homepage']), h($i['homepage']), array('target' => '_blank'));
 								}
 							}
 						}
@@ -58,16 +58,16 @@
 						foreach ($themeInfo['licenses'] as $key => $i) {
 							echo h($i['type']);
 							if (isset($i['url']) && $i['url']) {
-								echo "<br>" . $this->Html->link(h($i['url']), h($i['url']), array('target' => '_blank'));
+								echo '<br>' . $this->Html->link(h($i['url']), h($i['url']), array('target' => '_blank'));
 							}
 						}
 					?>
 					<h4><?php echo __('必要構成'); ?></h4>
 					<?php
 						foreach ($themeInfo['dependencies'] as $key => $i) {
-							echo h($key) . " : ";
+							echo h($key) . ' : ';
 							echo h($i);
-							echo "<br>";
+							echo '<br>';
 						}
 					?>
 				</div>

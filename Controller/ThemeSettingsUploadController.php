@@ -19,6 +19,15 @@ App::uses('AppController', 'Controller');
 class ThemeSettingsUploadController extends ThemeSettingsAppController {
 
 /**
+ * uses
+ *
+ * @var array
+ */
+	public $uses = array(
+		'Pages.Page',
+	);
+
+/**
  * beforeFilter
  *
  * @return void

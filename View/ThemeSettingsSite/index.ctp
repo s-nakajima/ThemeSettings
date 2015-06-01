@@ -60,7 +60,9 @@ $this->Html->script('ThemeSettings.theme_setting_site.js', false, array('inline'
 							<div>
 								<h3 class="text-center">{{theme.name}}</h3>
 								<p class="text-center">
-									<a href="/theme_settings/<?php echo h($classUrl); ?>/confirm/{{theme.key}}" class="btn btn-primary form-control" role="button"><?php echo __('設定確認')?></a>
+									<a href="/theme_settings/<?php echo h($classUrl); ?>/confirm/{{theme.key}}" class="btn btn-primary form-control" role="button">
+										<?php echo __('設定確認')?>
+									</a>
 								</p>
 							</div>
 						</div>
