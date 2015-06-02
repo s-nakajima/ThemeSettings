@@ -25,10 +25,11 @@
         "components/jquery":      "~2.1"
     },
     "require-dev": {
+        "mustangostang/spyc":     "dev-master",
+        "netcommons/net-commons": "dev-master",
+        "netcommons/pages":       "dev-master",
         "netcommons/users":       "dev-master",
-        "satooshi/php-coveralls": "dev-master",
-        "mustangostang/spyc": "dev-master",
-        "netcommons/net-commons": "dev-master"
+        "satooshi/php-coveralls": "dev-master"
     },
     "config": {
         "vendor-dir": "vendors"

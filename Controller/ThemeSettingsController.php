@@ -35,6 +35,6 @@ class ThemeSettingsController extends AppController {
  */
 	public function index() {
 		//サイト設定へリダイレクト
-		redirect("/theme_settings/theme_settings_site");
+		redirect('/theme_settings/theme_settings_site');
 	}
 }

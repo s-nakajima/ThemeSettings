@@ -29,8 +29,9 @@ class ThemeSettingsSiteControllerTest extends ControllerTestCase {
  * @var array
  */
 	public $fixtures = array(
-		'Session',
 		'plugin.net_commons.site_setting',
+		'plugin.pages.page',
+		'plugin.users.user',
 	);
 
 /**
@@ -143,12 +144,12 @@ class ThemeSettingsSiteControllerTest extends ControllerTestCase {
 				'Security'
 			),
 		));
-		$this->Controller->ThemeSettingsSiteValue = Classregistry::init("ThemeSettings.ThemeSettingsSiteValue");
+		$this->Controller->ThemeSettingsSiteValue = Classregistry::init('ThemeSettings.ThemeSettingsSiteValue');
 		$this->Controller->ThemeSettingsSiteValue->validate = array(
 			'value' => array(
 				'maxLength' => array(
 					'rule' => array('maxLength', 1), //１００文字以内
-					'message' => "登録できないテーマです。"
+					'message' => '登録できないテーマです。'
 				)
 			)
 		);

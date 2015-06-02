@@ -48,10 +48,9 @@ class ThemeSettingsSiteController extends ThemeSettingsAppController {
 	public function beforeFilter() {
 		parent::beforeFilter();
 		$this->Auth->allow(); //権限 : あとで適切なものに修正 : システム管理社
-		$this->set("classUrl", "site");//このclassへ遷移させるURL
-		$this->ThemeSettingsSite = Classregistry::init("ThemeSettings.ThemeSettingsSite");
-		$this->siteValue = Classregistry::init("ThemeSettings.ThemeSettingsSiteValue");
-		$this->Security->requireAuth(array("confirm"));
+		$this->set('classUrl', 'site');//このclassへ遷移させるURL
+		$this->ThemeSettingsSite = Classregistry::init('ThemeSettings.ThemeSettingsSite');
+		$this->Security->requireAuth(array('confirm'));
 		$this->ThemeList = $this->__getThemeList();
 	}
 
@@ -61,11 +60,11 @@ class ThemeSettingsSiteController extends ThemeSettingsAppController {
  * @param string $listType Type of display
  * @return void
  **/
-	public function index($listType = "") {
-		if ($listType == "small") {
-			$this->view = "index_small";
+	public function index($listType = '') {
+		if ($listType == 'small') {
+			$this->view = 'index_small';
 		}
-		$this->set("confirm", false); //確認モーダル表示 OFF
+		$this->set('confirm', false); //確認モーダル表示 OFF
 		$this->set('listType', $listType);
 		$this->set('themeListJson', $this->__createJson());
 		return $this->render();
@@ -78,7 +77,7 @@ class ThemeSettingsSiteController extends ThemeSettingsAppController {
  * @param string $listType Type of display
  * @return void
  */
-	public function confirm($theme = "Default", $listType = "") {
+	public function confirm($theme = 'Default', $listType = '') {
 		//themeが使用可能かどうかチェック
 		$themeList = $this->ThemeList;
 		if (! isset($themeList[$theme]) || ! $themeList[$theme]) {
@@ -112,9 +111,9 @@ class ThemeSettingsSiteController extends ThemeSettingsAppController {
  * @return bool True if the same
  */
 	private function __checkThemeValue($theme) {
-		if (! isset($this->request->data['ThemeSettingsSiteValue'])
-			|| ! isset($this->request->data['ThemeSettingsSiteValue']['value'])
-			|| $this->request->data['ThemeSettingsSiteValue']['value'] != $theme
+		if (! isset($this->request->data['ThemeSettingsSite'])
+			|| ! isset($this->request->data['ThemeSettingsSite']['value'])
+			|| $this->request->data['ThemeSettingsSite']['value'] != $theme
 		) {
 			return false;
 		}
@@ -129,8 +128,8 @@ class ThemeSettingsSiteController extends ThemeSettingsAppController {
  */
 	private function __updateValidationError($listType) {
 		//$errors = $this->ThemeSettingsSite->validationErrors;
-		$this->set("errors", '指定されたテーマは、設定できません。');
-		$this->view = "index";
+		$this->set('errors', '指定されたテーマは、設定できません。');
+		$this->view = 'index';
 		return $this->index($listType);
 	}
 
@@ -145,9 +144,9 @@ class ThemeSettingsSiteController extends ThemeSettingsAppController {
 		//完了画面表示 //成功した場合
 		$this->theme = $theme;
 		$this->set('themeList', $this->ThemeList); //テーマ一覧を取得する
-		$this->set("confirm", false); //確認モーダル表示 ON
-		$this->set("listType", $listType); //表示形式
-		$this->view = "update_end"; //完了画面表示
+		$this->set('confirm', false); //確認モーダル表示 ON
+		$this->set('listType', $listType); //表示形式
+		$this->view = 'update_end'; //完了画面表示
 		return $this->render();
 	}
 
@@ -158,8 +157,8 @@ class ThemeSettingsSiteController extends ThemeSettingsAppController {
  * @return CakeResponse
  */
 	private function __noticeThemeError($listType) {
-		$this->set("errors", array(__("指定されたテーマは、存在しないか削除されています。")));
-		$this->view = "index";
+		$this->set('errors', array(__('指定されたテーマは、存在しないか削除されています。')));
+		$this->view = 'index';
 		$this->response->statusCode(404);
 		return $this->index($listType);
 	}
@@ -171,19 +170,19 @@ class ThemeSettingsSiteController extends ThemeSettingsAppController {
  * @param string $listType Type of display
  * @return CakeResponse
  */
-	private function __confirmForm($theme = "", $listType = "") {
-		$this->view = "index";
-		if ($listType == "small") {
-			$this->view = "indexSmall";
+	private function __confirmForm($theme = '', $listType = '') {
+		$this->view = 'index';
+		if ($listType == 'small') {
+			$this->view = 'indexSmall';
 		}
 		$this->theme = $theme;
 		$themeList = $this->ThemeList;
-		$this->set("confirm", true); //モーダル表示ON
-		$this->set("targetTheme", $theme);
-		$this->set("oldTheme", $this->ThemeSettingsSite->getTheme()); //旧テーマ
-		$this->set("themeInfo", $themeList[$theme]);
-		$this->set("targetTheme", $theme);
-		$this->set("listType", $listType);
+		$this->set('confirm', true); //モーダル表示ON
+		$this->set('targetTheme', $theme);
+		$this->set('oldTheme', $this->ThemeSettingsSite->getTheme()); //旧テーマ
+		$this->set('themeInfo', $themeList[$theme]);
+		$this->set('targetTheme', $theme);
+		$this->set('listType', $listType);
 		$this->set('themeListJson', $this->__createJson($themeList));
 		return $this->render();
 	}

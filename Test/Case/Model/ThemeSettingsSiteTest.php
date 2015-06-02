@@ -58,7 +58,7 @@ class ThemeSettingsSiteTest extends CakeTestCase {
 		/*
 		//データがある場合
 		$ck = $this->ThemeSettingsSite->getThemeName();
-		$this->assertTextEquals("UnitTestTheme", $ck);
+		$this->assertTextEquals('UnitTestTheme', $ck);
 		//データが無い場合を作る
 		$ck = $this->ThemeSettingsSite->delete(2);
 		$this->assertTrue($ck);
@@ -77,7 +77,7 @@ class ThemeSettingsSiteTest extends CakeTestCase {
 		/*
 		//データがある場合
 		$ck = $this->ThemeSettingsSite->getTheme();
-		$this->assertTextEquals("UnitTestTheme", $ck['ThemeSettingsSite']['value']);
+		$this->assertTextEquals('UnitTestTheme', $ck['ThemeSettingsSite']['value']);
 		*/
 	}
 
@@ -126,12 +126,12 @@ class ThemeSettingsSiteTest extends CakeTestCase {
 		/*
 		//配列の場合のupdate処理実行
 		$theme2 = array();
-		$theme2['ThemeSettingsSite']['value'] = "test2";
+		$theme2['ThemeSettingsSite']['value'] = 'test2';
 		$ck = $this->ThemeSettingsSite->updateTheme($theme2);
 		$this->assertTrue($ck);
 		//名前を確認する
 		$ck = $this->ThemeSettingsSite->getThemeName();
-		$this->assertTextEquals("test2", $ck);
+		$this->assertTextEquals('test2', $ck);
 		*/
 	}
 /**
@@ -144,7 +144,7 @@ class ThemeSettingsSiteTest extends CakeTestCase {
 		//valueがブランク
 		$oldName = $this->ThemeSettingsSite->getThemeName();
 		$theme2 = array();
-		$theme2['ThemeSettingsSite']['value'] = "";
+		$theme2['ThemeSettingsSite']['value'] = '';
 		$ck = $this->ThemeSettingsSite->updateTheme($theme2);
 		$this->assertFalse($ck); //update失敗
 		//データは下記変わらないので旧のまま。

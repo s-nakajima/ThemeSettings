@@ -38,7 +38,7 @@ class ThemeSettingsThemeListComponent extends Component {
 		$package['snapshot'] = '';
 		foreach ($dirList as $d) {
 			if (is_dir($dir . $d) && ($d != '.' && $d != '..')) {
-				if (is_file($dir . $d . "/theme.json")) {
+				if (is_file($dir . $d . '/theme.json')) {
 					$file = file_get_contents($dir . $d . '/theme.json');
 					$package = json_decode($file, true);
 					if (is_file(App::themePath($d) . 'webroot/snapshot.jpg')) {

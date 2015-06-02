@@ -19,6 +19,15 @@ App::uses('AppController', 'Controller');
 class ThemeSettingsUploadController extends ThemeSettingsAppController {
 
 /**
+ * uses
+ *
+ * @var array
+ */
+	public $uses = array(
+		'Pages.Page',
+	);
+
+/**
  * beforeFilter
  *
  * @return void
@@ -26,9 +35,9 @@ class ThemeSettingsUploadController extends ThemeSettingsAppController {
 	public function beforeFilter() {
 		parent::beforeFilter();
 		$this->Auth->allow(); //あとで適切なものに修正
-		$this->set("classUrl", "upload");
-		$this->ThemeSettingsSite = Classregistry::init("ThemeSettings.ThemeSettingsSite");
-		$this->ThemeSettingsSiteValue = Classregistry::init("ThemeSettings.ThemeSettingsSiteValue");
+		$this->set('classUrl', 'upload');
+		$this->ThemeSettingsSite = Classregistry::init('ThemeSettings.ThemeSettingsSite');
+		$this->ThemeSettingsSiteValue = Classregistry::init('ThemeSettings.ThemeSettingsSiteValue');
 	}
 
 /**
