@@ -35,6 +35,7 @@ echo $this->element('ThemeSettings.site_index_call_js');
 				);
 				?>
 			</li>
+			<!--
 			<li>
 				<?php echo
 				$this->Html->link(__("テーマのアップロード"),
@@ -43,6 +44,7 @@ echo $this->element('ThemeSettings.site_index_call_js');
 				);
 				?>
 			</li>
+			-->
 		</ul>
 
 		<div class="page-header">

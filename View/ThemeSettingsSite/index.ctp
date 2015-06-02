@@ -36,9 +36,11 @@ $this->Html->script('ThemeSettings.theme_setting_site.js', false, array('inline'
 			<li>
 				<?php echo $this->Html->link(__('一覧から選ぶ'), '/theme_settings/' . $classUrl . '/index/small', array('class' => '')); ?>
 			</li>
+			<!--
 			<li>
 				<?php echo $this->Html->link(__('テーマのアップロード'), '/theme_settings/theme_settings_upload/', array()); ?>
 			</li>
+			-->
 		</ul>
 
 		<div class="page-header">
