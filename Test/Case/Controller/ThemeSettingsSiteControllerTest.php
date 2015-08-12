@@ -7,12 +7,12 @@
  * @license  http://www.netcommons.org/license.txt NetCommons License
  */
 
-App::uses('AppController', 'Controller');
+App::uses('YAControllerTestCase', 'NetCommons.TestSuite');
 
 /**
  * Summary for AnnouncementEditsController Test Case
  */
-class ThemeSettingsSiteControllerTest extends ControllerTestCase {
+class ThemeSettingsSiteControllerTest extends YAControllerTestCase {
 
 /**
  * setUp
@@ -30,8 +30,8 @@ class ThemeSettingsSiteControllerTest extends ControllerTestCase {
  */
 	public $fixtures = array(
 		'plugin.net_commons.site_setting',
-		'plugin.pages.page',
-		'plugin.users.user',
+		//'plugin.pages.page',
+		//'plugin.users.user',
 	);
 
 /**
