@@ -7,7 +7,6 @@
  * @license  http://www.netcommons.org/license.txt NetCommons License
  */
 
-App::uses('AppController', 'Controller');
 App::uses('YAControllerTestCase', 'NetCommons.TestSuite');
 
 /**
