@@ -8,11 +8,12 @@
  */
 
 App::uses('AppController', 'Controller');
+App::uses('YAControllerTestCase', 'NetCommons.TestSuite');
 
 /**
  * Summary for AnnouncementEditsController Test Case
  */
-class ThemeSettingsUploadControllerTest extends ControllerTestCase {
+class ThemeSettingsUploadControllerTest extends YAControllerTestCase {
 
 /**
  * setUp
@@ -30,8 +31,6 @@ class ThemeSettingsUploadControllerTest extends ControllerTestCase {
  */
 	public $fixtures = array(
 		'plugin.net_commons.site_setting',
-		'plugin.pages.page',
-		'plugin.users.user',
 	);
 
 /**
