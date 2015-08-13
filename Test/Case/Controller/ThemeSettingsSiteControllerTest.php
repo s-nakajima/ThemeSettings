@@ -30,8 +30,6 @@ class ThemeSettingsSiteControllerTest extends YAControllerTestCase {
  */
 	public $fixtures = array(
 		'plugin.net_commons.site_setting',
-		//'plugin.pages.page',
-		//'plugin.users.user',
 	);
 
 /**
