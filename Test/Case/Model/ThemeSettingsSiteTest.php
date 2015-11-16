@@ -8,12 +8,12 @@
  */
 
 App::uses('ThemeSettingsSite', 'ThemeSettings.Model');
-App::uses('YACakeTestCase', 'NetCommons.TestSuite');
+App::uses('NetCommonsCakeTestCase', 'NetCommons.TestSuite');
 
 /**
  * Summary for SiteSetting Test Case
  */
-class ThemeSettingsSiteTest extends YACakeTestCase {
+class ThemeSettingsSiteTest extends NetCommonsCakeTestCase {
 
 /**
  * Fixtures

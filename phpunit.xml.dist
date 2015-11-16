@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit bootstrap="vendors/autoload.php">
     <filter>
-        <whitelist>
-            <directory suffix=".php">app/Plugin/ThemeSettings</directory>
+        <whitelist addUncoveredFilesFromWhitelist="true">
             <directory suffix=".ctp">app/Plugin/ThemeSettings</directory>
+            <directory suffix=".php">app/Plugin/ThemeSettings</directory>
+            <exclude>
+                <directory suffix=".php">app/Plugin/ThemeSettings/Config/Migration</directory>
+                <directory suffix=".php">app/Plugin/ThemeSettings/Config/Schema</directory>
+                <directory suffix=".php">app/Plugin/ThemeSettings/Test/Case</directory>
+                <directory suffix=".php">app/Plugin/ThemeSettings/Test/Fixture</directory>
+            </exclude>
         </whitelist>
     </filter>
     <logging>

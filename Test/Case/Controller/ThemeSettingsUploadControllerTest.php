@@ -7,12 +7,12 @@
  * @license  http://www.netcommons.org/license.txt NetCommons License
  */
 
-App::uses('YAControllerTestCase', 'NetCommons.TestSuite');
+App::uses('NetCommonsControllerTestCase', 'NetCommons.TestSuite');
 
 /**
  * Summary for AnnouncementEditsController Test Case
  */
-class ThemeSettingsUploadControllerTest extends YAControllerTestCase {
+class ThemeSettingsUploadControllerTest extends NetCommonsControllerTestCase {
 
 /**
  * setUp
