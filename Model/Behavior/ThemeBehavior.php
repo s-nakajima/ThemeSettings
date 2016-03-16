@@ -1,6 +1,6 @@
 <?php
 /**
- * ThemeSettings Component
+ * Theme Behavior
  *
  * @author Noriko Arai <arai@nii.ac.jp>
  * @author Shohei Nakajima <nakajimashouhei@gmail.com>
@@ -9,37 +9,23 @@
  * @copyright Copyright 2014, NetCommons Project
  */
 
-App::uses('Component', 'Controller');
+App::uses('ModelBehavior', 'Model');
 
 /**
- * ThemeSettings Component
+ * Theme Behavior
  *
- * @author Shohei Nakajima <nakajimashouhei@gmail.com>
- * @package NetCommons\ThemeSettings\Controller\Component
+ * @author Kohei Teraguchi <kteraguchi@commonsnet.org>
+ * @package NetCommons\ThemeSettings\Model\Behavior
  */
-class ThemeSettingsComponent extends Component {
-
-/**
- * Called before the Controller::beforeFilter().
- *
- * @param Controller $controller Controller with components to initialize
- * @return void
- * @link http://book.cakephp.org/2.0/en/controllers/components.html#Component::initialize
- */
-	public function initialize(Controller $controller) {
-		$controller->helpers[] = 'ThemeSettings.ThemeSettings';
-
-		$this->controller = $controller;
-	}
+class ThemeBehavior extends ModelBehavior {
 
 /**
  * テーマリストの取得
  *
- * @return array
+ * @param Model $model 呼び出しもとのモデル
+ * @return array テーマリスト
  */
-	public function setThemes() {
-		$controller = $this->controller;
-
+	public function getThemes(Model $model) {
 		$themes = array();
 		$themePath = realpath(App::themePath('')) . DS;
 
@@ -66,7 +52,7 @@ class ThemeSettingsComponent extends Component {
 			$themes[] = $package;
 		}
 
-		$controller->set('themes', Hash::sort($themes, '{n}.key', 'asc'));
+		return Hash::sort($themes, '{n}.key', 'asc');
 	}
 
 }
