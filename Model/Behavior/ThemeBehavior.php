@@ -45,7 +45,7 @@ class ThemeBehavior extends ModelBehavior {
 			} elseif (is_file(App::themePath($path) . 'webroot/snapshot.png')) {
 				$package['snapshot'] = FULL_BASE_URL . '/theme/' . $path . '/snapshot.png';
 			} else {
-				$package['snapshot'] = FULL_BASE_URL . '/theme_setting/img/snapshot_noimage.png';
+				$package['snapshot'] = FULL_BASE_URL . '/theme_settings/img/snapshot_noimage.png';
 			}
 			$package['key'] = $path;
 
