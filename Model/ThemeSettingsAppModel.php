@@ -17,11 +17,5 @@ App::uses('AppModel', 'Model');
  */
 class ThemeSettingsAppModel extends AppModel {
 
-/**
- * use table
- *
- * @var bool
- */
-	public $useTable = false;
 }
 

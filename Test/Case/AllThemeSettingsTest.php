@@ -1,31 +1,34 @@
 <?php
 /**
- * ThemeSettings All Test Case
+ * ThemeSettings All Test Suite
  *
  * @author Noriko Arai <arai@nii.ac.jp>
- * @author Takako Miyagawa <nekoget@gmail.com>
+ * @author Shohei Nakajima <nakajimashouhei@gmail.com>
  * @link http://www.netcommons.org NetCommons Project
  * @license http://www.netcommons.org/license.txt NetCommons License
  * @copyright Copyright 2014, NetCommons Project
  */
 
+App::uses('NetCommonsTestSuite', 'NetCommons.TestSuite');
+
 /**
- * ThemeSettings All Test Case
+ * ThemeSettings All Test Suite
  *
- * @package NetCommons\ThemeSettings\Test
+ * @author Shohei Nakajima <nakajimashouhei@gmail.com>
+ * @package NetCommons\ThemeSettings\Test\Case
  * @codeCoverageIgnore
  */
-class AllThemeSettingsTest extends CakeTestSuite {
+class AllThemeSettingsTest extends NetCommonsTestSuite {
 
 /**
  * All test suite
  *
- * @return CakeTestSuite
+ * @return NetCommonsTestSuite
  */
 	public static function suite() {
 		$plugin = preg_replace('/^All([\w]+)Test$/', '$1', __CLASS__);
-		$suite = new CakeTestSuite(sprintf('All %s Plugin tests', $plugin));
-		$suite->addTestDirectoryRecursive(CakePlugin::path($plugin) . 'Test' . DS . 'Case');
+		$suite = new NetCommonsTestSuite(sprintf('All %s Plugin tests', $plugin));
+		//$suite->addTestDirectoryRecursive(CakePlugin::path($plugin) . 'Test' . DS . 'Case');
 		return $suite;
 	}
 }
